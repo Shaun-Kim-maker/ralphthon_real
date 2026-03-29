@@ -6,5 +6,11 @@ enum class KeywordCategory {
     COMPETITOR,
     TECHNICAL,
     BUSINESS,
-    GENERAL
+    GENERAL;
+
+    companion object {
+        fun fromString(value: String): KeywordCategory {
+            return entries.firstOrNull { it.name == value.uppercase() } ?: GENERAL
+        }
+    }
 }
