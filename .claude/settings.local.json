@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Project/Ralphbeforetest/$APPDATA/Claude/**)",
+      "Read(//c/Project/Ralphbeforetest/$HOME/.claude/**)"
+    ]
+  }
+}

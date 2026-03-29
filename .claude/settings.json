@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "Grep",
+      "Glob",
+      "WebFetch",
+      "WebSearch",
+      "mcp__plugin_oh-my-claudecode_t__*",
+      "mcp__plugin_playwright_playwright__*",
+      "mcp__plugin_context7_context7__*"
+    ]
+  }
+}
