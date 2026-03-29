@@ -40,13 +40,14 @@ class SearchStateTest {
     }
 
     private fun makeResult(
-        cardId: Long = 1L,
-        customerId: Long = 1L,
-        companyName: String = "삼성전자",
+        id: Long = 1L,
+        type: String = "CUSTOMER_MEETING",
         title: String = "미팅 요약",
         snippet: String = "가격 협의 내용",
-        score: Float = 0.9f
-    ) = SearchResult(cardId, customerId, companyName, title, snippet, score)
+        highlightRanges: List<IntRange> = emptyList(),
+        sourceId: Long = 1L,
+        relevanceScore: Float = 0.9f
+    ) = SearchResult(id, type, title, snippet, highlightRanges, sourceId, relevanceScore)
 
     private fun createViewModel() = SearchViewModel(searchCardsUseCase)
 
@@ -116,7 +117,7 @@ class SearchStateTest {
 
     @Test
     fun should_containResultsInData_when_searchSucceeds() = runTest {
-        val results = listOf(makeResult(cardId = 1L), makeResult(cardId = 2L))
+        val results = listOf(makeResult(id = 1L), makeResult(id = 2L))
         coEvery { searchCardsUseCase(any()) } returns Result.success(results)
         val vm = createViewModel()
         vm.search("삼성")

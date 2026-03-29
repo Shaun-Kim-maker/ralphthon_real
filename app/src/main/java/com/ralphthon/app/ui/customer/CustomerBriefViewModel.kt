@@ -34,13 +34,21 @@ class CustomerBriefViewModel @Inject constructor(
     val uiState: StateFlow<CustomerBriefUiState> = _uiState.asStateFlow()
 
     fun loadBrief(customerId: Long) {
+        if (customerId <= 0L) {
+            _uiState.value = CustomerBriefUiState.Error("잘못된 고객 ID입니다")
+            return
+        }
         this.customerId = customerId
         viewModelScope.launch {
             _uiState.value = CustomerBriefUiState.Loading
-            getCustomerBriefUseCase(customerId).fold(
-                onSuccess = { brief -> _uiState.value = CustomerBriefUiState.Data(brief) },
-                onFailure = { error -> _uiState.value = CustomerBriefUiState.Error(mapErrorMessage(error)) }
-            )
+            try {
+                getCustomerBriefUseCase(customerId).fold(
+                    onSuccess = { brief -> _uiState.value = CustomerBriefUiState.Data(brief) },
+                    onFailure = { error -> _uiState.value = CustomerBriefUiState.Error(mapErrorMessage(error)) }
+                )
+            } catch (e: Exception) {
+                _uiState.value = CustomerBriefUiState.Error("브리핑 로드 실패: ${e.message}")
+            }
         }
     }
 

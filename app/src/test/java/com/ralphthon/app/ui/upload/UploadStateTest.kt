@@ -1,5 +1,6 @@
 package com.ralphthon.app.ui.upload
 
+import com.ralphthon.app.domain.model.Conversation
 import com.ralphthon.app.domain.model.ConversationType
 import com.ralphthon.app.domain.model.Customer
 import com.ralphthon.app.domain.model.DomainException
@@ -8,6 +9,7 @@ import com.ralphthon.app.domain.usecase.UploadConversationUseCase
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -158,7 +160,7 @@ class UploadStateTest {
 
     @Test
     fun should_transitionToUploading_when_uploadCalled() = runTest {
-        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
@@ -171,7 +173,7 @@ class UploadStateTest {
 
     @Test
     fun should_transitionUploadingToSuccess_when_uploadSucceeds() = runTest {
-        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
@@ -184,7 +186,7 @@ class UploadStateTest {
 
     @Test
     fun should_containSuccessMessage_when_uploadSucceeds() = runTest {
-        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
@@ -302,7 +304,7 @@ class UploadStateTest {
 
     @Test
     fun should_transitionToIdle_when_resetFormCalled() = runTest {
-        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
@@ -365,7 +367,7 @@ class UploadStateTest {
 
     @Test
     fun should_uploadWithCustomerMeetingType_when_typeIsCustomerMeeting() = runTest {
-        coEvery { uploadUseCase(any(), eq(ConversationType.CUSTOMER_MEETING), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), eq(ConversationType.CUSTOMER_MEETING), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
@@ -379,7 +381,7 @@ class UploadStateTest {
 
     @Test
     fun should_uploadWithInternalMeetingType_when_typeIsInternalMeeting() = runTest {
-        coEvery { uploadUseCase(any(), eq(ConversationType.INTERNAL_MEETING), any(), any()) } returns Result.success(Unit)
+        coEvery { uploadUseCase(any(), eq(ConversationType.INTERNAL_MEETING), any(), any()) } returns Result.success(mockk<Conversation>())
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
