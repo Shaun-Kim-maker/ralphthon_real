@@ -1,5 +1,6 @@
 package com.ralphthon.app.ui.customer
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ralphthon.app.domain.model.DomainException
@@ -25,13 +26,18 @@ sealed class CustomerBriefUiState {
 
 @HiltViewModel
 class CustomerBriefViewModel @Inject constructor(
-    private val getCustomerBriefUseCase: GetCustomerBriefUseCase
+    private val getCustomerBriefUseCase: GetCustomerBriefUseCase,
+    savedStateHandle: SavedStateHandle = SavedStateHandle()
 ) : ViewModel() {
 
-    private var customerId: Long = 0L
+    internal var customerId: Long = savedStateHandle.get<Long>("customerId") ?: 0L
 
     private val _uiState = MutableStateFlow<CustomerBriefUiState>(CustomerBriefUiState.Loading)
     val uiState: StateFlow<CustomerBriefUiState> = _uiState.asStateFlow()
+
+    init {
+        if (customerId > 0L) loadBrief(customerId)
+    }
 
     fun loadBrief(customerId: Long) {
         if (customerId <= 0L) {
@@ -52,6 +58,7 @@ class CustomerBriefViewModel @Inject constructor(
         }
     }
 
+    fun loadBrief() { loadBrief(customerId) }
     fun refresh() { loadBrief(customerId) }
     fun retry() { loadBrief(customerId) }
 

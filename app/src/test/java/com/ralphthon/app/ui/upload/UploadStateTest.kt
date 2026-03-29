@@ -10,6 +10,7 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -160,14 +161,17 @@ class UploadStateTest {
 
     @Test
     fun should_transitionToUploading_when_uploadCalled() = runTest {
-        coEvery { uploadUseCase(any(), any(), any(), any()) } returns Result.success(mockk<Conversation>())
+        coEvery { uploadUseCase(any(), any(), any(), any()) } coAnswers {
+            kotlinx.coroutines.delay(1000)
+            Result.success(mockk<Conversation>())
+        }
         val vm = createViewModel()
         advanceUntilIdle()
         vm.selectCustomer(makeCustomer())
         vm.setTitle("미팅 제목")
         vm.setFile("/path/file.m4a", "file.m4a")
         vm.upload()
-        // Before advanceUntilIdle, state should be Uploading
+        testScheduler.runCurrent()
         assertEquals(UploadUiState.Uploading, vm.uiState.value)
     }
 
