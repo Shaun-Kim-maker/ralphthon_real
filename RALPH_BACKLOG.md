@@ -155,7 +155,7 @@
   - 산출물: test/.../data/api/contract/BackwardCompatibilityTest.kt
   - 검증: 35 tests PASS, git commit + push
 
-- [ ] **M-24**: TDD JSON Payload 파싱 테스트 30개
+- [x] **M-24**: TDD JSON Payload 파싱 테스트 30개 ← DONE 2026-03-29T13:20
   - 테스트: 30 | 스펙: test-specs/data-tests.md § 9
   - 산출물: test/.../data/api/JsonPayloadTest.kt
   - 포함: 전체 DTO hardcoded JSON 파싱 + 신규 모델 + ConversationType
@@ -167,67 +167,67 @@
 ## Phase 3: Domain UseCases (Session 3)
 예상 시간: 50분 | 마일스톤: M-25 ~ M-36
 
-- [ ] **M-25**: TDD GetCustomersUseCase 45 tests
+- [x] **M-25**: TDD GetCustomersUseCase 45 tests ← DONE 2026-03-29T13:30
   - 테스트: 45 | 스펙: test-specs/domain-tests.md § 5
   - 산출물: domain/usecase/GetCustomersUseCase.kt, test/.../domain/usecase/GetCustomersUseCaseTest.kt
   - 포함: 성공(1/10/100/빈), 실패(네트워크/401/403/404/500/503/타임아웃), 입력경계(null/빈/특수문자), 정렬(이름/최근/감정), 필터(ConversationType/감정/기간), 페이징, 동시성(중복호출/취소/레이스)
   - 검증: 45 tests PASS, git commit + push
 
-- [ ] **M-26**: TDD GetCardsByCustomerUseCase 50 tests
+- [x] **M-26**: TDD GetCardsByCustomerUseCase 50 tests ← DONE 2026-03-29T13:40
   - 테스트: 50 | 스펙: test-specs/domain-tests.md § 6
   - 산출물: domain/usecase/GetCardsByCustomerUseCase.kt, test/.../domain/usecase/GetCardsByCustomerUseCaseTest.kt
   - 포함: ConversationType필터(CUSTOMER만/INTERNAL만/전체), 날짜범위, 감정필터, 정렬, 페이징, 동시성
   - 검증: 50 tests PASS, git commit + push
 
-- [ ] **M-27**: TDD GetCardDetailUseCase 40 tests
+- [x] **M-27**: TDD GetCardDetailUseCase 40 tests ← DONE 2026-03-29T13:50
   - 테스트: 40 | 스펙: test-specs/domain-tests.md § 7
   - 산출물: domain/usecase/GetCardDetailUseCase.kt, test/.../domain/usecase/GetCardDetailUseCaseTest.kt
   - 포함: 전체필드, PriceCommitment/ActionItem/PredictedQuestion/Knowledge, 에러, 빈필드
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-28**: TDD GetCustomerBriefUseCase 50 tests (킬링 포인트)
+- [x] **M-28**: TDD GetCustomerBriefUseCase 50 tests (킬링 포인트) ← DONE 2026-03-29T14:00
   - 테스트: 50 | 스펙: test-specs/domain-tests.md § 16
   - 산출물: domain/usecase/GetCustomerBriefUseCase.kt, test/.../domain/usecase/GetCustomerBriefUseCaseTest.kt
   - 포함: 마지막대화요약(고객미팅+사내회의통합), PredictedQuestion, 가격히스토리, 빈데이터, 고객미팅만/사내회의만, 정렬, ActionItem미완료건수, 에러, 동시성
   - 검증: 50 tests PASS, git commit + push
 
-- [ ] **M-29**: TDD SearchCardsUseCase 45 tests
+- [x] **M-29**: TDD SearchCardsUseCase 45 tests ← DONE 2026-03-29T14:10
   - 테스트: 45 | 스펙: test-specs/domain-tests.md § 8
   - 산출물: domain/usecase/SearchCardsUseCase.kt, test/.../domain/usecase/SearchCardsUseCaseTest.kt
   - 포함: 쿼리(일반/빈/특수문자/URL인코딩), 필터(ConversationType/감정/키워드/기간), 페이징, 하이라이트, 디바운스
   - 검증: 45 tests PASS, git commit + push
 
-- [ ] **M-30**: TDD GetKnowledgeUseCase + UploadConversationUseCase 70 tests
+- [x] **M-30**: TDD GetKnowledgeUseCase + UploadConversationUseCase 70 tests ← DONE 2026-03-29T14:20
   - 테스트: 70 | 스펙: test-specs/domain-tests.md § 9, 13
   - 산출물: domain/usecase/GetKnowledgeUseCase.kt, domain/usecase/UploadConversationUseCase.kt, test/*Test.kt
   - 포함: Knowledge(키워드검색/빈결과/관련도정렬) + Upload(성공/실패/취소/재시도/ConversationType선택/진행률/파일형식검증)
   - 검증: 70 tests PASS, git commit + push
 
-- [ ] **M-31**: TDD GetPriceHistoryUseCase 30 tests
+- [x] **M-31**: TDD GetPriceHistoryUseCase 30 tests ← DONE 2026-03-29T14:30
   - 테스트: 30 | 스펙: test-specs/domain-tests.md § 17
   - 산출물: domain/usecase/GetPriceHistoryUseCase.kt, test/.../domain/usecase/GetPriceHistoryUseCaseTest.kt
   - 포함: 고객별가격이력(시간순), 통화별그룹핑, 조건변경추적, 빈이력, 최신가격, 범위필터
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-32**: TDD GetPredictedQuestionsUseCase 30 tests
+- [x] **M-32**: TDD GetPredictedQuestionsUseCase 30 tests ← DONE 2026-03-29T14:40
   - 테스트: 30 | 스펙: test-specs/domain-tests.md § 18
   - 산출물: domain/usecase/GetPredictedQuestionsUseCase.kt, test/.../domain/usecase/GetPredictedQuestionsUseCaseTest.kt
   - 포함: 고객별예상질문, confidence순정렬, 관련지식연결, 빈결과, 중복질문제거
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-33**: UseCase Parameterized Tests 80 tests
+- [x] **M-33**: UseCase Parameterized Tests 80 tests ← DONE 2026-03-29T14:50
   - 테스트: 80 | 스펙: test-specs/parameterized-tests.md § 3
   - 산출물: test/.../domain/usecase/UseCaseParameterizedTest.kt
   - 포함: 전체 9개 UseCase의 ID경계/페이징경계/필터조합/ConversationType조합/날짜범위/통화형식
   - 검증: 80 tests PASS, git commit + push
 
-- [ ] **M-34**: UseCase Error Handling 60 tests
+- [x] **M-34**: UseCase Error Handling 60 tests ← DONE 2026-03-29T15:00
   - 테스트: 60 | 스펙: test-specs/error-boundary-tests.md § 5
   - 산출물: test/.../domain/usecase/UseCaseErrorHandlingTest.kt
   - 포함: 전체 9개 UseCase의 잘못된입력/예외전파/에러매핑/Result.failure
   - 검증: 60 tests PASS, git commit + push
 
-- [ ] **M-35**: UseCase Concurrency Tests 40 tests
+- [x] **M-35**: UseCase Concurrency Tests 40 tests ← DONE 2026-03-29T15:10
   - 테스트: 40 | 스펙: test-specs/concurrency-tests.md § 2
   - 산출물: test/.../domain/usecase/UseCaseConcurrencyTest.kt
   - 포함: 디스패처검증, 취소전파, 중복호출, 레이스컨디션, Flow수집취소
