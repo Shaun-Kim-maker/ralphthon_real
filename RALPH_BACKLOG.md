@@ -21,60 +21,60 @@
 ## Phase 1: Architecture + Models + Mock Data (Session 1)
 예상 시간: 50분 | 마일스톤: M-01 ~ M-12
 
-- [ ] **M-01**: Gradle 프로젝트 스캐폴딩 + Version Catalog 설정
+- [x] **M-01**: Gradle 프로젝트 스캐폴딩 + Version Catalog 설정 ← DONE 2026-03-29T10:05
   - 테스트: 0 | 스펙: N/A
   - 산출물: build.gradle.kts, app/build.gradle.kts, settings.gradle.kts, gradle/libs.versions.toml
   - 의존성: Hilt, Compose, Retrofit, OkHttp, Gson, MockWebServer, JUnit5, MockK, Turbine, Coil, Room
   - 검증: `./gradlew.bat assembleDebug --no-daemon 2>&1 | tail -5` BUILD SUCCESSFUL, git commit + push
 
-- [ ] **M-02**: Domain 모델 11개 (Customer, Contact, Conversation, ContextCard, KeyStatement, Keyword, KnowledgeArticle, PriceCommitment, ActionItem, PredictedQuestion, SearchResult)
+- [x] **M-02**: Domain 모델 11개 ← DONE 2026-03-29T10:15 (Customer, Contact, Conversation, ContextCard, KeyStatement, Keyword, KnowledgeArticle, PriceCommitment, ActionItem, PredictedQuestion, SearchResult)
   - 테스트: 0 | 스펙: N/A
   - 산출물: domain/model/*.kt (11개 파일)
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-03**: Domain 열거형 4개 (ConversationType, Sentiment, KeywordCategory, ActionItemStatus)
+- [x] **M-03**: Domain 열거형 4개 ← DONE 2026-03-29T10:15 (ConversationType, Sentiment, KeywordCategory, ActionItemStatus)
   - 테스트: 0 | 스펙: N/A
   - 산출물: domain/model/ConversationType.kt, domain/model/Sentiment.kt, domain/model/KeywordCategory.kt, domain/model/ActionItemStatus.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-04**: Domain 모델 검증 테스트 40개
+- [x] **M-04**: Domain 모델 검증 테스트 40개 ← DONE 2026-03-29T10:25
   - 테스트: 40 | 스펙: test-specs/domain-tests.md § 14
   - 산출물: test/.../domain/model/ModelValidationTest.kt
   - 포함: Customer/ContextCard/KeyStatement 기존 + PriceCommitment(amount경계/currency/condition), ActionItem(status전이/dueDate), PredictedQuestion(confidence경계/suggestedAnswer)
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-05**: Domain 모델 동등성/복사 테스트 25개
+- [x] **M-05**: Domain 모델 동등성/복사 테스트 25개 ← DONE 2026-03-29T10:35
   - 테스트: 25 | 스펙: test-specs/domain-tests.md § 15
   - 산출물: test/.../domain/model/ModelEqualityTest.kt
   - 포함: 전체 15개 모델의 equals/hashCode/copy/toString
   - 검증: 25 tests PASS, git commit + push
 
-- [ ] **M-06**: DTO 클래스 10개
+- [x] **M-06**: DTO 클래스 10개 ← DONE 2026-03-29T10:40
   - 테스트: 0 | 스펙: N/A
   - 산출물: data/dto/CustomerDto.kt, data/dto/CardDto.kt, data/dto/KnowledgeDto.kt, data/dto/SearchResponseDto.kt, data/dto/UploadDto.kt, data/dto/ErrorDto.kt, data/dto/PriceCommitmentDto.kt, data/dto/ActionItemDto.kt, data/dto/PredictedQuestionDto.kt, data/dto/ConversationDto.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-07**: Domain Exceptions + Repository 인터페이스 5개
+- [x] **M-07**: Domain Exceptions + Repository 인터페이스 5개 ← DONE 2026-03-29T10:45
   - 테스트: 0 | 스펙: N/A
   - 산출물: domain/model/Exceptions.kt, domain/repository/CustomerRepository.kt, domain/repository/CardRepository.kt, domain/repository/KnowledgeRepository.kt, domain/repository/UploadRepository.kt, domain/repository/BriefRepository.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-08**: API Service 인터페이스 5개
+- [x] **M-08**: API Service 인터페이스 5개 ← DONE 2026-03-29T10:50
   - 테스트: 0 | 스펙: N/A
   - 산출물: data/api/CustomerApiService.kt, data/api/CardApiService.kt, data/api/KnowledgeApiService.kt, data/api/UploadApiService.kt, data/api/BriefApiService.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-09**: DI Module (Retrofit + OkHttp + Gson + Dispatchers)
+- [x] **M-09**: DI Module (Retrofit + OkHttp + Gson + Dispatchers) ← DONE 2026-03-29T10:55
   - 테스트: 0 | 스펙: N/A
   - 산출물: di/AppModule.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-10**: UI Theme (Color + Type + Theme) + Navigation skeleton + strings.xml
+- [x] **M-10**: UI Theme (Color + Type + Theme) + Navigation skeleton + strings.xml ← DONE 2026-03-29T11:00
   - 테스트: 0 | 스펙: N/A
   - 산출물: ui/theme/Color.kt, ui/theme/Type.kt, ui/theme/Theme.kt, ui/navigation/NavGraph.kt, res/values/strings.xml
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-11**: Mock 데이터 생성기 (고객 10명 × 대화 20건 = 200건)
+- [x] **M-11**: Mock 데이터 생성기 (고객 10명 × 대화 20건 = 200건) ← DONE 2026-03-29T11:10
   - 테스트: 15 | 스펙: N/A
   - 산출물: data/mock/MockDataGenerator.kt, data/mock/MockJsonProvider.kt, test/.../data/mock/MockDataGeneratorTest.kt
   - 포함: 고객별 CUSTOMER_MEETING + INTERNAL_MEETING 혼합, PriceCommitment/ActionItem/PredictedQuestion 포함
