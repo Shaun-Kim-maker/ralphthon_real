@@ -60,148 +60,148 @@ object MockDataGenerator {
 
     // 20 distinct summaries (10 customer-meeting + 10 internal)
     private val customerMeetingSummaries = listOf(
-        "Isaac Sim 시뮬레이터 라이선스 별도 옵션 여부를 논의. 고객사는 소스코드 제공 여부를 강하게 요구했으나, 당사는 바이너리 납품만 가능하다는 입장을 고수함. 시뮬레이터 패키징은 별도 계약으로 처리하기로 합의.",
-        "로봇 팔 6축 모델 PoC 일정 협의. PoC는 무료로 진행하되 본계약 시 비용에 포함하는 조건 제안. 고객사는 3개월 PoC 기간을 요청, 당사는 2개월 내 완료 가능 여부를 기술팀에 확인하기로 함.",
-        "AMR 50대 물류센터 적용 데모 완료. 경로 최적화 알고리즘 성능에 만족하나 타사 AMR과의 상호운용성(interoperability) 질문 제기. 당사 Fleet 관리 플랫폼이 ROS2 표준을 지원함을 강조.",
-        "엣지 AI 프로세서 NVIDIA Jetson Orin 기반 비전 시스템 검토. 추론 지연 50ms 이하 요구 충족 확인. 온프레미스 배포 가능 여부 질문에 클라우드 없이 단독 운용 가능함을 시연.",
-        "디지털 트윈 환경에서 로봇 시뮬레이션 정확도 95% 달성 데이터 공유. 고객사 생산라인 3D 모델 구축에 추가 2주 소요 예상. 트윈 구축 비용을 별도 항목으로 견적에 반영 요청.",
-        "협동 로봇 ISO 10218 및 ISO/TS 15066 인증 현황 공유. 조립 라인 2개 공정에 Cobot 8대 투입 계획 확정. 안전 펜스 제거 시 추가 위험성 평가 필요함을 고지.",
-        "로봇 Fleet 100대 관리 플랫폼 가격 협상. 연간 3억 제안에 고객사 2억 5천 역제안. 3년 장기 계약 시 20% 할인 카드를 꺼냈으나 고객사 예산 사이클과 맞지 않아 추가 검토 필요.",
-        "예지보전 AI 솔루션 도입으로 장비 다운타임 30% 감소 효과 ROI 분석 발표. 6개월 내 투자비 회수 가능 데이터 제시. 고객사 CFO가 회의에 참석해 재무적 효과에 높은 관심 표명.",
-        "소프트웨어 라이선스 연간 계약 조건 세부 협의. 하드웨어는 별도이며 소프트웨어 라이선스만 포함하는 계약 구조 설명. 유지보수는 연간 계약금의 15%로 제안, 고객사는 10%를 희망.",
-        "ROS2 기반 센서 퓨전(LiDAR + 카메라) 기술 파트너십 논의. SDK 제공 범위 및 API 문서화 수준을 확인. 경쟁사가 이미 유사 제안을 했다는 정보 입수, 기술 차별성 강조 필요."
+        "Physical AI 솔루션 관련해서 지분 20% 내놓기로 말씀하셨던거 기억나시죠? 해당 조건으로 시리즈 A 50억 투자를 검토 중. 기술 실사 후 최종 결정 예정. 로봇 자동화 시장 TAM 분석 자료 추가 요청.",
+        "시리즈 A 라운드 목표 100억. 베이스 벤처스가 리드 투자자로 50억, 나머지는 팔로우온 투자자 조합 구성 예정. Pre-money 밸류에이션 300억 기준으로 논의. 투자자 측에서 400억 이상 가능 시사.",
+        "로봇 팔 자동화 PoC 결과 공유. 생산성 40% 향상 데이터 제시. 투자자 반응 매우 긍정적. 'Physical AI가 다음 빅 웨이브'라는 의견에 공감. 추가 기술 실사 일정 조율.",
+        "지분 20% 기준 밸류에이션 재논의. 투자자 측에서 25% 지분 요구. 우리 측은 20%가 마지노선이라고 전달. 우선주 전환 비율 1:1 기본, 희석 방지 조항 Full Ratchet은 수용 불가.",
+        "기술 실사(Tech DD) 진행. 핵심 IP 3건 확인, 특허 출원 중 2건 검토. 코드 리뷰에서 ROS2 기반 아키텍처 완성도에 대해 높은 평가. 데이터 파이프라인 확장성에 대한 추가 질문.",
+        "파일럿 고객 3사(삼성전자, 현대차, SK) 계약 현황 공유. MRR 3억 달성 데이터 제시. 투자자가 'unit economics가 건전하다'고 코멘트. LTV/CAC 비율 5:1 이상 유지 확인.",
+        "공동 투자 구조 논의. 카카오 벤처스 30억 + 소프트뱅크 벤처스 20억 + 알토스 벤처스 50억 조합 제안. 리드 투자자 선정 문제로 조율 필요. 이사회 좌석 배분 논의 시작.",
+        "후속 라운드(시리즈 B) 계획 공유. 12개월 내 시리즈 B 200억 목표. 해외 진출(일본, 동남아) 자금 용도. 투자자가 브릿지 라운드 가능성도 열어두자고 제안.",
+        "이사회 구성 논의. 투자자 1석, 경영진 2석, 사외이사 1석 구조 제안. 투자자 측에서 관찰자(Observer) 1석 추가 요청. 의결권 없는 조건으로 수용 가능.",
+        "Exit 전략 논의. IPO는 3~5년 내 코스닥 상장 목표. M&A 옵션도 열어두되, 경영진 Lock-up 기간 협의 필요. 투자자가 Tag-along/Drag-along 조항 포함 요청."
     )
 
     private val internalMeetingSummaries = listOf(
-        "이 고객은 예산이 충분하니 풀패키지로 제안하는 방향으로 가자. 시뮬레이터 제외해도 마진율 35% 이상 유지 가능. 다음 미팅 전에 견적서 수정본(시뮬레이터 제외 버전) 발송 필요.",
-        "PoC 기술 난이도가 높아 기간을 3개월로 잡아야 한다는 결론. 2개월 완료 약속은 고객에게 하지 않기로 함. 기술팀 리소스 2명 추가 배정 검토.",
-        "내부 마진율 40% 이상 유지 원칙 재확인. 고객 역제안 2억 5천은 마진율 28%로 수용 불가. 3억 유지하되 유지보수 비율 조정으로 패키지 가치 높이는 방향 논의.",
-        "경쟁사 A사가 이미 고객사에 접촉해 유사 솔루션 제안 완료. 빠르게 움직여야 함. 기술 우위(정확도, 지연 시간) 데이터를 비교 자료로 준비해 다음 미팅에서 제시 예정.",
-        "Q2 파이프라인 중 대형 딜 3건 확인. 삼성전자 건이 가장 규모가 크고 성사 가능성 높음. 현대차는 의사결정자 교체로 재접근 필요.",
-        "Isaac Sim 시뮬레이터는 제외한다는 방침 재확인. 소스코드는 절대 주지 않는다. 우리 팀에서 사용하고 싶은 내용만 활용하는 형태로 납품. 시뮬레이터 패키징 및 이관은 별도 옵션.",
-        "고객 피드백 취합 결과 대시보드 UX 불편 호소 3건. 기술팀이 다음 스프린트에서 수정 예정. 이 부분을 경쟁사 대비 개선 포인트로 활용 가능.",
-        "NDA 법무팀 검토 완료. 고객사 제안 조항 중 지식재산권 귀속 조항은 수용 불가. 표준 계약서 기준으로 재협상 요청 예정.",
-        "기술 지원 이슈 중 펌웨어 업그레이드 실패 케이스 1건 발생. 원인 분석 완료(드라이버 호환성). 다음 릴리스에 핫픽스 포함 예정. 고객 커뮤니케이션은 영업팀이 담당.",
-        "시스템 인테그레이터 2사와 파트너십 MOU 추진 중. 이를 통해 설치 및 현장 지원 역량 강화. 파트너 수수료 구조는 영업팀 마진에 영향 없도록 설계."
+        "베이스 벤처스가 리드로 확정되면 나머지 투자자 조합이 빠르게 구성될 것. 지분 20%는 사수해야 한다. 25% 이상 넘기면 시리즈 B에서 경영권 이슈 발생 가능. 창업팀 지분 60% 이상 유지 원칙.",
+        "밸류에이션 300억은 보수적. 경쟁사 대비 기술 우위와 파일럿 매출 고려하면 400억도 가능. 다만 시장 상황 고려해 350억 선에서 타협 가능. CFO가 재무 모델 업데이트 예정.",
+        "지분 희석 시나리오: 시리즈 A 20% + 시리즈 B 15% → 창업팀 최종 지분 55%. ESOP 10% 풀 별도. 시리즈 C까지 가면 창업팀 45%까지 희석 가능. 의결권은 차등의결권으로 보호.",
+        "Term Sheet 비교: 베이스 벤처스(우호적 조건), 카카오 벤처스(전략적 시너지), 소프트뱅크(글로벌 네트워크). 베이스+카카오 조합이 최적. 소프트뱅크는 팔로우온으로.",
+        "기술 실사 대응 자료 준비 완료. 특허 포트폴리오 3건, 핵심 알고리즘 성능 벤치마크, 기술 로드맵 18개월 버전. CTO가 직접 발표 예정.",
+        "시리즈 A 클로징 목표: 4월 말. Term Sheet 서명 → 실사 → 주금 납입까지 6주 소요 예상. 법무법인 계약서 초안 검토 중. 변호사 비용 5천만원 예산 확보.",
+        "IR 자료 v3 업데이트. Physical AI 시장 전망(2030년 50조 시장), 경쟁 우위 3가지, 재무 전망(3년 BEP). 투자자 미팅 시 첫 10분 안에 핵심 메시지 전달 필수.",
+        "우선주 조건 검토: 1배 참가형 우선 분배. Full Ratchet 희석 방지는 거부, Weighted Average로 역제안. 이사 해임 조항은 2/3 특별결의로.",
+        "공동 투자자 조합: 전략적 투자자(카카오벤처스) + 재무적 투자자(베이스, 알토스) 믹스가 이상적. 전략적 투자자 비중 30% 이하로 유지해야 향후 M&A 유연성 확보.",
+        "Post-money 시뮬레이션: 350억 기준 시리즈 A 후 창업팀 68.6%, 투자자 20%, ESOP 10%, 엔젤 1.4%. 시리즈 B까지 고려하면 창업팀 55% 예상. 건전한 구조."
     )
 
     // Combined pool: customer meeting summaries first, then internal
     private val allSummaries = customerMeetingSummaries + internalMeetingSummaries
 
     private val keywordPool = listOf(
-        Keyword("Isaac Sim", KeywordCategory.PRODUCT, 5),
-        Keyword("로봇 팔", KeywordCategory.PRODUCT, 4),
-        Keyword("AMR", KeywordCategory.PRODUCT, 4),
-        Keyword("디지털 트윈", KeywordCategory.PRODUCT, 3),
-        Keyword("엣지 AI", KeywordCategory.TECHNICAL, 3),
-        Keyword("Fleet 관리", KeywordCategory.PRODUCT, 3),
-        Keyword("협동 로봇", KeywordCategory.PRODUCT, 4),
-        Keyword("예지보전", KeywordCategory.PRODUCT, 3),
-        Keyword("라이선스", KeywordCategory.PRICE, 4),
-        Keyword("연간 계약", KeywordCategory.PRICE, 3),
-        Keyword("할인", KeywordCategory.PRICE, 3),
-        Keyword("유지보수", KeywordCategory.PRICE, 3),
+        Keyword("Physical AI", KeywordCategory.PRODUCT, 5),
+        Keyword("로봇 자동화", KeywordCategory.PRODUCT, 4),
+        Keyword("시리즈 A", KeywordCategory.BUSINESS, 5),
+        Keyword("밸류에이션", KeywordCategory.PRICE, 4),
+        Keyword("지분 구조", KeywordCategory.BUSINESS, 4),
+        Keyword("Term Sheet", KeywordCategory.BUSINESS, 3),
+        Keyword("기술 실사", KeywordCategory.TECHNICAL, 4),
+        Keyword("우선주", KeywordCategory.PRICE, 3),
+        Keyword("IPO", KeywordCategory.BUSINESS, 4),
+        Keyword("MRR", KeywordCategory.PRICE, 3),
+        Keyword("Anti-dilution", KeywordCategory.PRICE, 3),
+        Keyword("ESOP", KeywordCategory.BUSINESS, 3),
         Keyword("경쟁사", KeywordCategory.COMPETITOR, 3),
-        Keyword("대안", KeywordCategory.COMPETITOR, 2),
-        Keyword("벤치마크", KeywordCategory.COMPETITOR, 2),
-        Keyword("API", KeywordCategory.TECHNICAL, 2),
-        Keyword("SDK", KeywordCategory.TECHNICAL, 2),
-        Keyword("ROS2", KeywordCategory.TECHNICAL, 3),
-        Keyword("시뮬레이션", KeywordCategory.TECHNICAL, 3),
-        Keyword("센서 퓨전", KeywordCategory.TECHNICAL, 2),
-        Keyword("ROI", KeywordCategory.BUSINESS, 4),
-        Keyword("생산성", KeywordCategory.BUSINESS, 3),
-        Keyword("도입 효과", KeywordCategory.BUSINESS, 3),
-        Keyword("마진율", KeywordCategory.BUSINESS, 2),
-        Keyword("PoC", KeywordCategory.BUSINESS, 4)
+        Keyword("Co-invest", KeywordCategory.BUSINESS, 2),
+        Keyword("리드 투자자", KeywordCategory.BUSINESS, 3),
+        Keyword("ROS2", KeywordCategory.TECHNICAL, 2),
+        Keyword("특허", KeywordCategory.TECHNICAL, 3),
+        Keyword("Exit 전략", KeywordCategory.BUSINESS, 3),
+        Keyword("브릿지 라운드", KeywordCategory.BUSINESS, 2),
+        Keyword("이사회", KeywordCategory.BUSINESS, 2),
+        Keyword("LTV/CAC", KeywordCategory.BUSINESS, 4),
+        Keyword("파일럿 고객", KeywordCategory.BUSINESS, 3),
+        Keyword("Lock-up", KeywordCategory.PRICE, 3),
+        Keyword("Tag-along", KeywordCategory.PRICE, 2),
+        Keyword("Drag-along", KeywordCategory.PRICE, 2)
     )
 
     private val customerStatements = listOf(
-        "Isaac Sim 라이선스는 별도로 구매해야 하나요, 아니면 패키지에 포함되나요?",
-        "PoC 결과가 기대에 못 미치면 본계약 없이 종료할 수 있나요?",
-        "온프레미스 배포가 가능한가요? 클라우드 의존 없이 운용하고 싶습니다.",
-        "로봇 팔 고장 시 교체 또는 수리 기간은 얼마나 됩니까?",
-        "타사 로봇 장비와의 호환성은 어느 수준으로 지원되나요?",
-        "소스코드를 납품받을 수 있나요? 자체 커스터마이징이 필요합니다.",
-        "연간 계약 말고 3년 장기 계약 시 추가 할인이 있나요?",
-        "ROI를 실제로 달성한 레퍼런스 고객 사례를 보여줄 수 있나요?",
-        "경쟁사 제품 대비 구체적인 기술 우위를 데이터로 제시해주세요.",
-        "유지보수 비율 15%는 너무 높습니다. 10%로 조정 가능한가요?",
-        "예산이 올해 안에 집행되어야 합니다. 계약 후 설치까지 얼마나 걸리나요?",
-        "엣지 AI 추론 지연이 50ms 이하라는 것을 실제로 증명해주세요.",
-        "글로벌 공장에도 동일한 솔루션을 적용할 수 있나요?",
-        "데이터는 외부로 전송되지 않는다고 보장할 수 있나요?",
-        "ROS2 기반이라면 우리 기존 로봇 인프라와 통합 가능합니까?"
+        "Physical AI 솔루션 관련해서 지분 20% 내놓기로 말씀하셨던거 기억나시죠? 그 조건 그대로 갈 수 있으면 빠르게 진행하고 싶습니다.",
+        "시리즈 A 50억 투자는 확정적인데, 밸류에이션을 좀 더 논의해야 할 것 같아요. Pre-money 300억은 좀 낮지 않나요?",
+        "기술 실사 결과가 좋으면 추가 20억까지 가능합니다. 다만 우선주 전환 조건을 좀 더 유리하게 해주셔야 합니다.",
+        "파일럿 고객 레퍼런스가 인상적이에요. 삼성전자랑 현대차가 쓰고 있다는 건 신뢰도가 높습니다.",
+        "공동 투자자 조합에 전략적 투자자를 꼭 포함시켜야 합니다. 카카오 벤처스가 들어오면 사업 시너지가 클 거예요.",
+        "이사회 좌석은 최소 1석은 확보해야 합니다. 관찰자 자리로는 부족해요.",
+        "Exit 전략이 명확해야 투자 결정을 할 수 있어요. IPO 타임라인을 좀 더 구체적으로 보여주세요.",
+        "Anti-dilution 조항은 Full Ratchet으로 해주셔야 합니다. Weighted Average로는 투자 보호가 부족합니다.",
+        "로봇 자동화 시장이 커지고 있는 건 맞는데, 경쟁사 대비 기술 차별성을 더 명확하게 보여주셔야 해요.",
+        "브릿지 라운드 가능성도 열어두고 싶어요. 시리즈 B 전에 시장 상황에 따라 유연하게 대응할 수 있어야 합니다.",
+        "Lock-up 기간은 1년이 적당하다고 봅니다. 2년은 너무 길어요.",
+        "Tag-along 권리는 반드시 포함되어야 합니다. 대주주 매각 시 우리도 같이 나갈 수 있어야 해요.",
+        "MRR 3억이면 ARR 36억인데, PSR 10배 적용하면 360억 밸류에이션이 맞지 않나요?",
+        "다른 VC들도 관심을 보이고 있어서, 의사결정을 빨리 해주시면 좋겠습니다.",
+        "Physical AI 분야에서 이 정도 기술력을 가진 팀은 국내에 없다고 봅니다. 투자하고 싶습니다."
     )
 
     private val salesStatements = listOf(
-        "시뮬레이터는 없이 한다고 했으나 명시한 적은 없어서 고객이 헷갈릴 수 있음. 다음 미팅 전에 명확히 정리 필요.",
-        "Isaac Sim 시뮬레이터는 제외합니다. 소스코드는 드리지 않습니다.",
-        "시뮬레이터 패키징 및 이관은 별도 옵션으로 제공 가능합니다.",
-        "가격은 연간 3억으로 제안드렸으나, 고객사는 2억 5천을 원하고 있습니다.",
-        "PoC는 무료로 진행하되, 본계약 시 비용에 포함하는 구조입니다.",
-        "유지보수는 연간 계약금의 15%로 제안드립니다.",
-        "하드웨어는 별도이며, 소프트웨어 라이선스만 이번 계약에 포함됩니다.",
-        "경쟁사 대비 기술 우위를 데이터로 강조해야 할 시점입니다.",
-        "내부적으로 마진율 40% 이상은 유지해야 합니다.",
-        "이 고객은 예산이 충분하니 풀패키지로 가는 것이 유리합니다.",
-        "경쟁사가 이미 접촉했으니 빠르게 움직여야 합니다.",
-        "기술적 난이도가 높아서 PoC 기간을 3개월로 잡겠습니다.",
-        "우리 팀에서 사용하고 싶은 내용만 활용하는 형태로 납품합니다.",
-        "3년 장기 계약 시 20% 할인 조건을 제시할 수 있습니다.",
-        "온프레미스 단독 운용 가능하며 외부 데이터 전송 없음을 보장합니다."
+        "지분 20%가 저희 마지노선입니다. 25% 이상은 시리즈 B에서 경영권 이슈가 생길 수 있어요.",
+        "Pre-money 밸류에이션 350억으로 제안드립니다. 파일럿 매출과 기술 특허를 감안하면 적정합니다.",
+        "우선주 전환은 1:1 기본이고, Anti-dilution은 Weighted Average로 가겠습니다. Full Ratchet은 수용 불가입니다.",
+        "리드 투자자에게 이사회 1석을 드립니다. 나머지 투자자는 관찰자(Observer) 자격으로 참여 가능합니다.",
+        "시리즈 B는 12개월 내에 진행할 계획이며, 해외 진출 자금으로 사용할 예정입니다.",
+        "기술 실사는 언제든 환영합니다. CTO가 직접 브리핑하겠습니다.",
+        "현재 MRR 3억이고, 연말까지 MRR 10억 달성이 목표입니다.",
+        "IPO는 3~5년 내 코스닥 상장을 목표로 하고 있습니다.",
+        "Lock-up 기간은 18개월로 제안드립니다. 1년은 시장 신호로 부정적일 수 있습니다.",
+        "ESOP 풀은 10%로 설정했고, 핵심 인력 유지에 필수적입니다.",
+        "창업팀 지분 60% 이상 유지가 원칙입니다. 차등의결권도 검토 중입니다.",
+        "공동 투자 구조에서 전략적 투자자 비중은 30% 이하로 유지하려 합니다.",
+        "현재 특허 3건 등록, 2건 출원 중이며, 핵심 알고리즘은 영업비밀로 보호합니다.",
+        "파일럿 고객 3사 모두 본계약으로 전환 예정이며, 신규 고객 5사 파이프라인이 있습니다.",
+        "Physical AI 시장은 2030년까지 50조 규모로 성장할 것으로 전망하고 있습니다."
     )
 
     private val knowledgeArticles = listOf(
-        KnowledgeArticle(1L, "Physical AI 로봇 제품 라인업", "Isaac Sim 기반 시뮬레이션 환경, 6축 로봇 팔, AMR 3개 라인업 구성. 소프트웨어 라이선스와 하드웨어 별도 계약 구조.", "제품", 0.95f),
-        KnowledgeArticle(2L, "로봇 자동화 ROI 분석 가이드", "평균 18개월 내 투자비 회수. 인건비 40% 절감, 불량률 30% 감소. 레퍼런스 고객 5사 데이터 포함.", "영업", 0.88f),
-        KnowledgeArticle(3L, "경쟁사 비교 분석표 (2026 Q1)", "경쟁사 A: 가격 낮으나 ROS2 미지원. 경쟁사 B: Fleet 관리 미흡. 당사 기술 우위: 지연 50ms, 정확도 99.7%.", "경쟁", 0.82f),
-        KnowledgeArticle(4L, "안전 인증 현황", "ISO 10218, ISO/TS 15066, CE, KC 인증 보유. Cobot 라인은 추가 위험성 평가 필요.", "인증", 0.90f),
-        KnowledgeArticle(5L, "스마트 팩토리 구축 사례집", "반도체 공정 6축 로봇 팔 도입 사례, 물류센터 AMR 100대 운용 사례 포함.", "사례", 0.85f),
-        KnowledgeArticle(6L, "Isaac Sim 라이선스 정책", "시뮬레이터 패키징은 별도 옵션. 소스코드 비제공 원칙. 바이너리 전용 납품. 연간 라이선스 갱신 필요.", "정책", 0.92f),
-        KnowledgeArticle(7L, "가격 정책 가이드라인", "소프트웨어 라이선스 기본 3억/년. 유지보수 15%. 3년 계약 시 20% 할인. 마진율 40% 유지 기준.", "가격", 0.78f),
-        KnowledgeArticle(8L, "엣지 AI 기술 백서", "NVIDIA Jetson Orin 기반. 추론 지연 50ms 이하. 온프레미스 단독 운용. 클라우드 의존도 0.", "기술", 0.91f)
+        KnowledgeArticle(1L, "Physical AI 시장 전망 2030", "글로벌 Physical AI 시장 규모 2030년 50조원 전망. 로봇 자동화, 자율주행, 드론 물류 포함. CAGR 35%.", "시장분석", 0.95f),
+        KnowledgeArticle(2L, "시리즈 A 투자 가이드라인", "Pre-money 200~500억 구간. 리드 투자자 비중 40~60%. 우선주 1배 참가형 표준. Anti-dilution Weighted Average 권장.", "투자", 0.88f),
+        KnowledgeArticle(3L, "경쟁사 기술 비교 분석", "경쟁사 A: ROS2 미지원, 시뮬레이션 정확도 90%. 경쟁사 B: Fleet 관리 미흡. 당사 우위: 정확도 99.7%, 지연 50ms.", "경쟁", 0.82f),
+        KnowledgeArticle(4L, "파일럿 고객 성과 보고서", "삼성전자: 생산성 40% 향상. 현대차: 불량률 30% 감소. SK: ROI 18개월 달성. 3사 모두 본계약 전환 예정.", "레퍼런스", 0.90f),
+        KnowledgeArticle(5L, "지분 희석 시나리오 가이드", "시리즈 A 20% → 시리즈 B 15% → 시리즈 C 10%. 창업팀 최종 지분 45~55%. 차등의결권으로 경영권 보호.", "재무", 0.85f),
+        KnowledgeArticle(6L, "특허 포트폴리오 현황", "등록 특허 3건(로봇 제어 알고리즘, 센서 퓨전, 디지털 트윈). 출원 중 2건. PCT 국제 출원 1건.", "IP", 0.92f),
+        KnowledgeArticle(7L, "VC 투자 Term Sheet 표준 조항", "우선주 전환 1:1, 희석 방지 Weighted Average, 이사회 1석, Lock-up 18개월, Tag-along/Drag-along 포함.", "법무", 0.78f),
+        KnowledgeArticle(8L, "Unit Economics 분석", "LTV/CAC 5:1. MRR 3억(ARR 36억). Gross Margin 75%. Net Revenue Retention 130%. 건전한 SaaS 지표.", "재무", 0.91f)
     )
 
     private val predictedQuestionPool = listOf(
-        PredictedQuestion(1L, "Isaac Sim 라이선스 별도 구매가 필요한가요?", "Isaac Sim 시뮬레이터는 별도 옵션입니다. 기본 계약에는 포함되지 않으며, 연간 추가 비용이 발생합니다. 소스코드는 제공되지 않습니다.", listOf("Isaac Sim", "라이선스", "시뮬레이터"), 0.93f),
-        PredictedQuestion(2L, "로봇 팔 고장 시 교체 기간은 얼마나 됩니까?", "골드 SLA 기준 4시간 내 현장 출동, 48시간 내 부품 교체를 보장합니다. 예비 부품은 국내 물류 창고에 상시 비축합니다.", listOf("SLA", "유지보수", "교체 기간"), 0.89f),
-        PredictedQuestion(3L, "타사 로봇과의 호환성은 어떻게 되나요?", "ROS2 표준을 지원하므로 ROS2 호환 로봇 장비와 통합 가능합니다. Fleet 관리 플랫폼은 벤더 중립적으로 설계되어 있습니다.", listOf("ROS2", "호환성", "Fleet 관리"), 0.85f),
-        PredictedQuestion(4L, "PoC 결과가 나쁘면 계약 취소가 가능한가요?", "PoC 결과물 기준 충족 여부를 계약서에 명시합니다. 미충족 시 본계약 의무가 없는 조건부 계약 구조를 제안할 수 있습니다.", listOf("PoC", "계약 조건", "해지"), 0.87f),
-        PredictedQuestion(5L, "온프레미스 배포가 가능한가요? 클라우드만 되나요?", "엣지 AI 아키텍처로 설계되어 클라우드 없이 온프레미스 단독 운용이 가능합니다. 모든 추론은 로컬에서 처리됩니다.", listOf("온프레미스", "엣지 AI", "클라우드"), 0.91f),
-        PredictedQuestion(6L, "경쟁사 대비 가격이 높은 이유는 무엇인가요?", "Fleet 관리, 예지보전, 디지털 트윈 연동이 모두 포함된 토탈 솔루션입니다. TCO 기준으로 3년 누적 비용은 경쟁사 대비 20% 저렴합니다.", listOf("TCO", "경쟁사", "차별성"), 0.84f)
+        PredictedQuestion(1L, "지분 20%가 최종 조건인가요, 협상 여지가 있나요?", "20%가 마지노선입니다. 시리즈 B까지 고려하면 창업팀 지분 60% 이상 유지가 원칙이며, 25% 이상 양보는 경영권 이슈로 이어질 수 있습니다.", listOf("지분 구조", "경영권", "시리즈 B"), 0.93f),
+        PredictedQuestion(2L, "밸류에이션 300억의 산정 근거가 무엇인가요?", "PSR 10배 기준(ARR 36억), 파일럿 고객 3사 매출, 특허 3건 보유, Physical AI 시장 성장률 CAGR 35%를 종합적으로 반영했습니다.", listOf("밸류에이션", "PSR", "ARR"), 0.89f),
+        PredictedQuestion(3L, "Anti-dilution 조항을 Full Ratchet으로 변경 가능한가요?", "Full Ratchet은 수용 불가합니다. Broad-based Weighted Average로 제안하며, 이는 업계 표준 조건입니다.", listOf("Anti-dilution", "우선주", "투자 보호"), 0.85f),
+        PredictedQuestion(4L, "시리즈 B는 언제 예정인가요?", "12개월 내 시리즈 B 200억 목표입니다. 해외 진출(일본, 동남아) 자금으로 사용할 예정이며, MRR 10억 달성 후 진행합니다.", listOf("시리즈 B", "해외 진출", "후속 라운드"), 0.87f),
+        PredictedQuestion(5L, "경쟁사 대비 기술적 우위가 구체적으로 무엇인가요?", "핵심 우위: ROS2 완전 지원, 추론 지연 50ms 이하, 시뮬레이션 정확도 99.7%, 온프레미스 단독 운용. 경쟁사는 이 중 1~2개만 충족합니다.", listOf("기술 우위", "ROS2", "경쟁사"), 0.91f),
+        PredictedQuestion(6L, "Lock-up 기간을 1년으로 줄일 수 있나요?", "18개월을 제안합니다. 1년 Lock-up은 시장에 '빠른 Exit 의도'로 해석될 수 있어 주가에 부정적 영향을 줄 수 있습니다.", listOf("Lock-up", "IPO", "Exit"), 0.84f)
     )
 
     // Price commitment data: (amount, currency, condition, timeOffset)
     private data class PriceData(val amount: Double, val currency: String, val condition: String, val timeOffset: String)
 
     private val priceDataPool = listOf(
-        PriceData(300_000_000.0, "KRW", "소프트웨어 라이선스 연간 계약 시", "10:30"),
-        PriceData(50_000_000.0, "KRW", "PoC 성공 조건부 (본계약 포함)", "15:00"),
-        PriceData(250_000_000.0, "KRW", "고객 역제안 (2억 5천)", "22:15"),
-        PriceData(120_000_000.0, "KRW", "유지보수 연간 계약 (계약금의 15%)", "08:45"),
-        PriceData(240_000_000.0, "KRW", "3년 장기 계약 시 20% 할인 적용", "14:00"),
-        PriceData(180_000_000.0, "KRW", "AMR 50대 대량 구매 기준", "11:20"),
-        PriceData(80_000_000.0, "KRW", "Isaac Sim 시뮬레이터 패키징 별도 옵션", "16:30"),
-        PriceData(500_000_000.0, "KRW", "Fleet 100대 + 디지털 트윈 풀패키지", "09:00"),
-        PriceData(30_000_000.0, "KRW", "엣지 AI 프로세서 파일럿 (3개월)", "13:45"),
-        PriceData(90_000_000.0, "KRW", "협동 로봇 8대 설치 및 교육 포함", "17:00")
+        PriceData(5_000_000_000.0, "KRW", "시리즈 A 리드 투자 (지분 20% 기준)", "15:30"),
+        PriceData(3_000_000_000.0, "KRW", "팔로우온 투자 (카카오 벤처스)", "22:15"),
+        PriceData(2_000_000_000.0, "KRW", "공동 투자 참여분 (소프트뱅크)", "18:40"),
+        PriceData(35_000_000_000.0, "KRW", "Pre-money 밸류에이션 기준", "10:05"),
+        PriceData(10_000_000_000.0, "KRW", "시리즈 A 총 라운드 규모 목표", "14:20"),
+        PriceData(5_000_000_000.0, "KRW", "알토스 벤처스 공동 투자 제안", "11:35"),
+        PriceData(20_000_000_000.0, "KRW", "시리즈 B 후속 라운드 목표 (12개월 후)", "16:50"),
+        PriceData(1_000_000_000.0, "KRW", "브릿지 라운드 가능 규모", "09:15"),
+        PriceData(50_000_000.0, "KRW", "법무 자문 비용 예산", "13:25"),
+        PriceData(3_600_000_000.0, "KRW", "ARR 기준 (MRR 3억 x 12)", "17:10")
     )
 
     // Action item data: (description, assignee, dueDayOffset, status)
     private data class ActionData(val description: String, val assignee: String, val dueDayOffset: Int, val status: ActionItemStatus)
 
     private val actionDataPool = listOf(
-        ActionData("견적서 수정본 발송 (시뮬레이터 제외 버전)", "영업팀 김대리", 3, ActionItemStatus.OPEN),
-        ActionData("경쟁사 비교 자료 준비 (기술 우위 데이터 포함)", "기술팀 박과장", 5, ActionItemStatus.OPEN),
-        ActionData("PoC 환경 세팅 일정 확정", "기술팀 박과장", 7, ActionItemStatus.OPEN),
-        ActionData("법무팀 NDA 검토 요청", "영업팀 김대리", 3, ActionItemStatus.DONE),
-        ActionData("기술팀 데모 환경 준비 (Isaac Sim 포함)", "기술팀 박과장", 10, ActionItemStatus.OPEN),
-        ActionData("ROI 분석 자료 업데이트 (레퍼런스 2건 추가)", "영업팀 김대리", 5, ActionItemStatus.DONE),
-        ActionData("유지보수 비율 재조정 안 내부 승인 요청", "CTO 이사", 7, ActionItemStatus.OPEN),
-        ActionData("ROS2 SDK 호환성 검증 보고서 작성", "기술팀 박과장", 14, ActionItemStatus.OPEN),
-        ActionData("온프레미스 배포 시연 환경 준비", "기술팀 박과장", 5, ActionItemStatus.DONE),
-        ActionData("계약서 표준 조항 재검토 (IP 귀속 조항)", "법무팀", 7, ActionItemStatus.OPEN)
+        ActionData("Term Sheet 초안 검토 및 수정", "대표이사 CEO", 3, ActionItemStatus.OPEN),
+        ActionData("기술 실사 대응 자료 준비 (특허 포트폴리오)", "CTO", 5, ActionItemStatus.OPEN),
+        ActionData("재무 모델 업데이트 (시리즈 A 반영)", "CFO", 7, ActionItemStatus.OPEN),
+        ActionData("법무법인 계약서 초안 의뢰", "법무팀", 3, ActionItemStatus.DONE),
+        ActionData("IR 자료 v3 업데이트 (Physical AI 시장 전망)", "전략기획실", 10, ActionItemStatus.OPEN),
+        ActionData("파일럿 고객 레퍼런스 레터 확보 (삼성전자)", "영업팀", 5, ActionItemStatus.DONE),
+        ActionData("밸류에이션 산정 근거 자료 정리", "CFO", 7, ActionItemStatus.OPEN),
+        ActionData("우선주 조건 비교표 작성", "법무팀", 14, ActionItemStatus.OPEN),
+        ActionData("이사회 구성안 내부 확정", "대표이사 CEO", 5, ActionItemStatus.DONE),
+        ActionData("Post-money 지분 희석 시뮬레이션 완성", "CFO", 7, ActionItemStatus.OPEN)
     )
 
     private var cachedCustomers: List<Customer>? = null
@@ -218,7 +218,7 @@ object MockDataGenerator {
                 industry = industry,
                 lastInteractionDate = "2026-03-${(10 + index).toString().padStart(2, '0')}",
                 totalConversations = 20,
-                summary = "$company - Physical AI 로봇 솔루션 도입 검토 중. 담당자: $contact. 주요 관심사: Isaac Sim 라이선스, PoC 조건, 가격 협상."
+                summary = "$company - Physical AI 로봇 스타트업 시리즈 A 투자 검토 중. 담당: $contact. 주요 논점: 지분 구조, 밸류에이션, Term Sheet 조건."
             )
         }
         cachedCustomers = customers

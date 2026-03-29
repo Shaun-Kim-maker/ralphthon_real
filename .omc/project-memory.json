@@ -1,0 +1,390 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1774752807970,
+  "projectRoot": "C:\\Project\\Ralphbeforetest",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "scripts"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 1,
+      "lastAccessed": 1774752807890,
+      "keyFiles": [
+        "harness-engineering-reference.md"
+      ]
+    },
+    "gradle": {
+      "path": "gradle",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1774752807892,
+      "keyFiles": []
+    },
+    "prompts": {
+      "path": "prompts",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1774752807894,
+      "keyFiles": [
+        "phase-1.md",
+        "phase-2.md",
+        "phase-3.md",
+        "phase-4.md",
+        "phase-5.md"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 1,
+      "lastAccessed": 1774752807894,
+      "keyFiles": [
+        "ralph-relay.sh"
+      ]
+    },
+    "test-specs": {
+      "path": "test-specs",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1774752807896,
+      "keyFiles": [
+        "concurrency-tests.md",
+        "contract-tests.md",
+        "data-tests.md",
+        "domain-tests.md",
+        "error-boundary-tests.md"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "RALPH_BACKLOG.md",
+      "accessCount": 64,
+      "lastAccessed": 1774773900675,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 61,
+      "lastAccessed": 1774774042853,
+      "type": "directory"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\mock\\MockDataGenerator.kt",
+      "accessCount": 39,
+      "lastAccessed": 1774774333187,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\ui\\navigation\\NavGraph.kt",
+      "accessCount": 19,
+      "lastAccessed": 1774773720172,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Customer.kt",
+      "accessCount": 13,
+      "lastAccessed": 1774773585927,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\ContextCard.kt",
+      "accessCount": 12,
+      "lastAccessed": 1774773478853,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Exceptions.kt",
+      "accessCount": 9,
+      "lastAccessed": 1774769667831,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\ActionItem.kt",
+      "accessCount": 9,
+      "lastAccessed": 1774772283287,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\PriceCommitment.kt",
+      "accessCount": 9,
+      "lastAccessed": 1774772284012,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\PredictedQuestion.kt",
+      "accessCount": 9,
+      "lastAccessed": 1774772284458,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\PriceCommitmentDto.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774759665484,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\ActionItemDto.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774759665839,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\PredictedQuestionDto.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774759666516,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\KnowledgeDto.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774759666949,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\KnowledgeArticle.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774772286361,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\SearchResult.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774773457558,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\ui\\theme\\Color.kt",
+      "accessCount": 8,
+      "lastAccessed": 1774773513947,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\CardDto.kt",
+      "accessCount": 7,
+      "lastAccessed": 1774759662212,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Sentiment.kt",
+      "accessCount": 7,
+      "lastAccessed": 1774772240492,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\ActionItemStatus.kt",
+      "accessCount": 7,
+      "lastAccessed": 1774772293383,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\ui\\theme\\Theme.kt",
+      "accessCount": 7,
+      "lastAccessed": 1774773549156,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Conversation.kt",
+      "accessCount": 7,
+      "lastAccessed": 1774773596354,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\CustomerDto.kt",
+      "accessCount": 6,
+      "lastAccessed": 1774759661847,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\SearchResponseDto.kt",
+      "accessCount": 6,
+      "lastAccessed": 1774759662602,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\ConversationType.kt",
+      "accessCount": 6,
+      "lastAccessed": 1774772247951,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Keyword.kt",
+      "accessCount": 6,
+      "lastAccessed": 1774772285828,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\KeyStatement.kt",
+      "accessCount": 6,
+      "lastAccessed": 1774773582446,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\UploadDto.kt",
+      "accessCount": 5,
+      "lastAccessed": 1774759667257,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\repository\\CardRepository.kt",
+      "accessCount": 5,
+      "lastAccessed": 1774766873324,
+      "type": "file"
+    },
+    {
+      "path": "test-specs\\domain-tests.md",
+      "accessCount": 4,
+      "lastAccessed": 1774754671268,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\ErrorDto.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774759749093,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\repository\\CustomerRepository.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774765412792,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\KeywordCategory.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774772287171,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\MainActivity.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774772770378,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\repository\\UploadRepository.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774773601576,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\repository\\BriefRepository.kt",
+      "accessCount": 4,
+      "lastAccessed": 1774773818778,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\repository\\KnowledgeRepository.kt",
+      "accessCount": 3,
+      "lastAccessed": 1774767830384,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\ui\\theme\\Type.kt",
+      "accessCount": 3,
+      "lastAccessed": 1774772699457,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\res\\values\\strings.xml",
+      "accessCount": 2,
+      "lastAccessed": 1774755684152,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\mock\\MockJsonProvider.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774756257356,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\dto\\ConversationDto.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774756262780,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\api\\CardApiService.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774756912877,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\api\\BriefApiService.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774757204808,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\api\\KnowledgeApiService.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774757490612,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\api\\UploadApiService.kt",
+      "accessCount": 2,
+      "lastAccessed": 1774757491376,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\domain\\model\\Contact.kt",
+      "accessCount": 1,
+      "lastAccessed": 1774754544129,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\data\\api\\CustomerApiService.kt",
+      "accessCount": 1,
+      "lastAccessed": 1774755431750,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\main\\java\\com\\ralphthon\\app\\di\\AppModule.kt",
+      "accessCount": 1,
+      "lastAccessed": 1774755535515,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\test\\java\\com\\ralphthon\\app\\domain\\model\\ModelValidationTest.kt",
+      "accessCount": 1,
+      "lastAccessed": 1774755941121,
+      "type": "file"
+    },
+    {
+      "path": "app\\src\\test\\java\\com\\ralphthon\\app\\data\\mock\\MockDataGeneratorTest.kt",
+      "accessCount": 1,
+      "lastAccessed": 1774755982388,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
