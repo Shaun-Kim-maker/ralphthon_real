@@ -1,20 +1,23 @@
 package com.ralphthon.app.ui.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
@@ -24,6 +27,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ralphthon.app.ui.card.CardDetailScreen
+import com.ralphthon.app.ui.card.CardNewsListScreen
+import com.ralphthon.app.ui.customer.CustomerBriefBottomSheet
+import com.ralphthon.app.ui.customer.CustomerListScreen
+import com.ralphthon.app.ui.search.SearchScreen
+import com.ralphthon.app.ui.upload.UploadScreen
+import androidx.compose.material3.MaterialTheme
 
 sealed class Screen(val route: String) {
     object CustomerList : Screen("customers")
@@ -49,6 +59,7 @@ val bottomNavItems = listOf(
     BottomNavItem("업로드", Icons.Default.Add, Screen.Upload.route)
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ZipiNavGraph(navController: NavHostController = rememberNavController()) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -56,10 +67,32 @@ fun ZipiNavGraph(navController: NavHostController = rememberNavController()) {
 
     val showBottomBar = currentRoute in bottomNavItems.map { it.route }
 
+    var showBriefSheet by remember { mutableStateOf(false) }
+    var briefCustomerId by remember { mutableStateOf(0L) }
+
     Scaffold(
+        topBar = {
+            if (showBottomBar) {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = "Zipi",
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    )
+                )
+            }
+        },
         bottomBar = {
             if (showBottomBar) {
-                NavigationBar {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                ) {
                     bottomNavItems.forEach { item ->
                         NavigationBarItem(
                             icon = { Icon(item.icon, contentDescription = item.label) },
@@ -84,36 +117,53 @@ fun ZipiNavGraph(navController: NavHostController = rememberNavController()) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.CustomerList.route) {
-                PlaceholderScreen("고객 목록")
+                CustomerListScreen(
+                    onCustomerClick = { customerId ->
+                        briefCustomerId = customerId
+                        showBriefSheet = true
+                    }
+                )
             }
             composable(
                 Screen.CardNewsList.route,
                 arguments = listOf(navArgument("customerId") { type = NavType.LongType })
             ) {
-                PlaceholderScreen("카드뉴스 목록")
+                CardNewsListScreen(
+                    onCardClick = { cardId ->
+                        navController.navigate(Screen.CardDetail.createRoute(cardId))
+                    },
+                    onBack = { navController.popBackStack() }
+                )
             }
             composable(
                 Screen.CardDetail.route,
                 arguments = listOf(navArgument("cardId") { type = NavType.LongType })
             ) {
-                PlaceholderScreen("카드 상세")
+                CardDetailScreen(
+                    onBack = { navController.popBackStack() }
+                )
             }
             composable(Screen.Search.route) {
-                PlaceholderScreen("검색")
+                SearchScreen(
+                    onResultClick = { sourceId ->
+                        navController.navigate(Screen.CardDetail.createRoute(sourceId))
+                    }
+                )
             }
             composable(Screen.Upload.route) {
-                PlaceholderScreen("업로드")
+                UploadScreen()
             }
         }
-    }
-}
 
-@Composable
-private fun PlaceholderScreen(title: String) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = title, style = androidx.compose.material3.MaterialTheme.typography.headlineMedium)
+        if (showBriefSheet) {
+            CustomerBriefBottomSheet(
+                customerId = briefCustomerId,
+                onDismiss = { showBriefSheet = false },
+                onNavigateToDetail = {
+                    showBriefSheet = false
+                    navController.navigate(Screen.CardNewsList.createRoute(briefCustomerId))
+                }
+            )
+        }
     }
 }

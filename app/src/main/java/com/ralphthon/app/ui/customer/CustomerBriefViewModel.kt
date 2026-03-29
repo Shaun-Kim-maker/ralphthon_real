@@ -1,6 +1,5 @@
 package com.ralphthon.app.ui.customer
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ralphthon.app.domain.model.DomainException
@@ -26,18 +25,16 @@ sealed class CustomerBriefUiState {
 
 @HiltViewModel
 class CustomerBriefViewModel @Inject constructor(
-    private val getCustomerBriefUseCase: GetCustomerBriefUseCase,
-    savedStateHandle: SavedStateHandle
+    private val getCustomerBriefUseCase: GetCustomerBriefUseCase
 ) : ViewModel() {
 
-    val customerId: Long = savedStateHandle.get<Long>("customerId") ?: 0L
+    private var customerId: Long = 0L
 
     private val _uiState = MutableStateFlow<CustomerBriefUiState>(CustomerBriefUiState.Loading)
     val uiState: StateFlow<CustomerBriefUiState> = _uiState.asStateFlow()
 
-    init { loadBrief() }
-
-    fun loadBrief() {
+    fun loadBrief(customerId: Long) {
+        this.customerId = customerId
         viewModelScope.launch {
             _uiState.value = CustomerBriefUiState.Loading
             getCustomerBriefUseCase(customerId).fold(
@@ -47,8 +44,8 @@ class CustomerBriefViewModel @Inject constructor(
         }
     }
 
-    fun refresh() { loadBrief() }
-    fun retry() { loadBrief() }
+    fun refresh() { loadBrief(customerId) }
+    fun retry() { loadBrief(customerId) }
 
     fun togglePredictions() { updateState { copy(isPredictionsExpanded = !isPredictionsExpanded) } }
     fun togglePriceHistory() { updateState { copy(isPriceHistoryExpanded = !isPriceHistoryExpanded) } }

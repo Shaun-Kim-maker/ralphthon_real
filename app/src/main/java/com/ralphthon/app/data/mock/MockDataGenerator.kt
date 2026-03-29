@@ -18,138 +18,190 @@ import com.ralphthon.app.domain.model.Sentiment
 object MockDataGenerator {
 
     private val customerData = listOf(
-        Triple("삼성전자", "김민수", "반도체"),
-        Triple("LG전자", "이정훈", "가전"),
-        Triple("현대자동차", "박서연", "자동차"),
-        Triple("SK하이닉스", "최동현", "반도체"),
-        Triple("네이버", "정유진", "IT"),
-        Triple("카카오", "한지민", "IT"),
-        Triple("쿠팡", "오승우", "이커머스"),
-        Triple("배달의민족", "윤하늘", "푸드테크"),
-        Triple("토스", "신재호", "핀테크"),
-        Triple("KT", "강미래", "통신")
+        Triple("베이스 벤처스", "박진호 이사", "벤처캐피탈"),
+        Triple("카카오 벤처스", "이수현 이사", "벤처캐피탈"),
+        Triple("소프트뱅크 벤처스", "김태영 상무", "벤처캐피탈"),
+        Triple("스틱 인베스트먼트", "정민아 이사", "벤처캐피탈"),
+        Triple("한화 투자증권", "최재훈 부장", "증권"),
+        Triple("KB 인베스트먼트", "유서진 이사", "벤처캐피탈"),
+        Triple("알토스 벤처스", "신동혁 파트너", "벤처캐피탈"),
+        Triple("산업은행 캐피탈", "강예린 차장", "정책금융"),
+        Triple("LB 인베스트먼트", "임준영 이사", "벤처캐피탈"),
+        Triple("DSC 인베스트먼트", "한소율 팀장", "벤처캐피탈")
     )
 
+    // 10 distinct CUSTOMER_MEETING titles per customer slot (cycled)
     private val meetingTitles = listOf(
-        "Physical AI 로봇 솔루션 초기 미팅",
-        "자율주행 로봇 데모 시연",
-        "AI 비전 시스템 기술 검토",
-        "로봇 팔 자동화 PoC 논의",
-        "스마트 팩토리 로봇 도입 제안",
-        "물류 자동화 로봇 가격 협상",
-        "AI 품질검사 시스템 계약 논의",
-        "로봇 유지보수 서비스 계약",
-        "차세대 로봇 플랫폼 로드맵 공유",
-        "AI 로봇 안전 인증 논의",
-        "로봇 시뮬레이션 환경 구축 협의",
-        "엣지 AI 프로세서 도입 검토",
-        "로봇 원격 제어 시스템 시연",
-        "AI 기반 예지보전 솔루션 소개",
-        "협동 로봇 라인 투입 계획",
-        "디지털 트윈 연동 방안 논의",
-        "AI 로봇 교육 프로그램 제안",
-        "로봇 OS 업그레이드 일정 협의",
-        "센서 퓨전 기술 파트너십 논의",
-        "로봇 Fleet 관리 플랫폼 소개"
+        "Physical AI 솔루션 투자 검토 미팅",
+        "시리즈 A 라운드 조건 협의",
+        "로봇 자동화 사업 계획 발표",
+        "지분 구조 및 밸류에이션 논의",
+        "기술 실사(Tech DD) 미팅",
+        "파일럿 고객사 레퍼런스 공유",
+        "공동 투자(Co-invest) 구조 협의",
+        "후속 투자 라운드 계획 논의",
+        "이사회 참여 및 거버넌스 논의",
+        "Exit 전략 및 IPO 로드맵 공유"
     )
 
+    // 10 distinct INTERNAL_MEETING titles (cycled)
     private val internalTitles = listOf(
-        "사내 전략 회의 - 고객사 대응 방안",
-        "기술팀 리뷰 - PoC 결과 분석",
-        "영업팀 주간 미팅 - 파이프라인 리뷰",
-        "가격 정책 내부 논의",
-        "경쟁사 동향 분석 회의",
-        "제품 로드맵 내부 공유",
-        "고객 피드백 종합 분석",
-        "기술 지원 이슈 리뷰",
-        "분기 매출 목표 조정 회의",
-        "파트너십 전략 수립 회의"
+        "투자 유치 전략 내부 회의",
+        "밸류에이션 산정 근거 논의",
+        "지분 희석 시나리오 분석",
+        "투자자별 Term Sheet 비교 검토",
+        "기술 실사 대응 자료 준비",
+        "시리즈 A 클로징 타임라인 수립",
+        "투자자 관계(IR) 전략 수립",
+        "우선주 조건 및 보호 조항 검토",
+        "공동 투자자 조합 최적화 논의",
+        "Post-money 밸류에이션 시뮬레이션"
     )
 
-    private val summaries = listOf(
-        "고객사에서 Physical AI 로봇의 생산라인 적용에 높은 관심을 보임. 특히 비전 기반 품질검사 모듈에 대해 구체적인 PoC 일정을 요청함.",
-        "자율주행 로봇의 물류센터 적용 데모를 진행. 경로 최적화 알고리즘의 성능에 만족하며 2단계 확대 도입을 검토 중.",
-        "AI 로봇 팔의 정밀도 테스트 결과를 공유. 0.01mm 오차 범위 달성으로 반도체 공정 적용 가능성 확인.",
-        "스마트 팩토리 전환 프로젝트에서 로봇 도입 우선순위를 논의. 조립 공정부터 단계적 도입 합의.",
-        "물류 자동화 로봇 50대 도입 건에 대한 가격 협상 진행. 대량 구매 할인 조건으로 대당 15% 할인 제안.",
-        "AI 품질검사 시스템의 불량률 감소 효과를 데이터로 제시. 기존 대비 40% 불량 검출률 향상 확인.",
-        "로봇 유지보수 연간 계약 조건 협의. 24시간 원격 모니터링 및 4시간 내 현장 출동 SLA 합의.",
-        "차세대 로봇 플랫폼의 AI 학습 기능 시연. 고객사 특화 모델 훈련 서비스에 높은 관심.",
-        "협동 로봇의 안전 인증(ISO 10218, ISO/TS 15066) 획득 현황 공유. 추가 인증 필요 사항 논의.",
-        "엣지 AI 프로세서를 통한 실시간 처리 성능 개선 방안 논의. 지연시간 50ms 이하 목표 설정.",
-        "디지털 트윈 환경에서의 로봇 시뮬레이션 데모. 실제 환경 대비 95% 정확도 달성.",
-        "센서 퓨전 기술을 활용한 환경 인식 정확도 향상 방안 협의. LiDAR + 카메라 통합 솔루션 제안.",
-        "로봇 Fleet 관리 플랫폼의 실시간 대시보드 시연. 100대 이상 동시 관리 가능성 확인.",
-        "AI 기반 예지보전 솔루션으로 장비 다운타임 30% 감소 효과 제시. 파일럿 프로젝트 제안.",
-        "로봇 원격 제어 시스템의 5G 기반 저지연 통신 테스트 결과 공유. 10ms 이하 지연 달성.",
-        "내부 기술 검토 결과 고객 요구사항 충족 가능. 추가 개발 2주 소요 예상.",
-        "경쟁사 대비 가격 경쟁력 분석 완료. 기능 대비 20% 저렴한 가격 포지셔닝 가능.",
-        "고객 피드백 기반 UX 개선 사항 도출. 대시보드 직관성 향상 및 알림 기능 추가 예정.",
-        "분기 매출 목표 대비 85% 달성 중. 신규 2건 수주 시 목표 초과 달성 전망.",
-        "파트너 에코시스템 확장 전략 수립. 시스템 인테그레이터 3사와 협력 MOU 추진."
+    // 20 distinct summaries (10 customer-meeting + 10 internal)
+    private val customerMeetingSummaries = listOf(
+        "Isaac Sim 시뮬레이터 라이선스 별도 옵션 여부를 논의. 고객사는 소스코드 제공 여부를 강하게 요구했으나, 당사는 바이너리 납품만 가능하다는 입장을 고수함. 시뮬레이터 패키징은 별도 계약으로 처리하기로 합의.",
+        "로봇 팔 6축 모델 PoC 일정 협의. PoC는 무료로 진행하되 본계약 시 비용에 포함하는 조건 제안. 고객사는 3개월 PoC 기간을 요청, 당사는 2개월 내 완료 가능 여부를 기술팀에 확인하기로 함.",
+        "AMR 50대 물류센터 적용 데모 완료. 경로 최적화 알고리즘 성능에 만족하나 타사 AMR과의 상호운용성(interoperability) 질문 제기. 당사 Fleet 관리 플랫폼이 ROS2 표준을 지원함을 강조.",
+        "엣지 AI 프로세서 NVIDIA Jetson Orin 기반 비전 시스템 검토. 추론 지연 50ms 이하 요구 충족 확인. 온프레미스 배포 가능 여부 질문에 클라우드 없이 단독 운용 가능함을 시연.",
+        "디지털 트윈 환경에서 로봇 시뮬레이션 정확도 95% 달성 데이터 공유. 고객사 생산라인 3D 모델 구축에 추가 2주 소요 예상. 트윈 구축 비용을 별도 항목으로 견적에 반영 요청.",
+        "협동 로봇 ISO 10218 및 ISO/TS 15066 인증 현황 공유. 조립 라인 2개 공정에 Cobot 8대 투입 계획 확정. 안전 펜스 제거 시 추가 위험성 평가 필요함을 고지.",
+        "로봇 Fleet 100대 관리 플랫폼 가격 협상. 연간 3억 제안에 고객사 2억 5천 역제안. 3년 장기 계약 시 20% 할인 카드를 꺼냈으나 고객사 예산 사이클과 맞지 않아 추가 검토 필요.",
+        "예지보전 AI 솔루션 도입으로 장비 다운타임 30% 감소 효과 ROI 분석 발표. 6개월 내 투자비 회수 가능 데이터 제시. 고객사 CFO가 회의에 참석해 재무적 효과에 높은 관심 표명.",
+        "소프트웨어 라이선스 연간 계약 조건 세부 협의. 하드웨어는 별도이며 소프트웨어 라이선스만 포함하는 계약 구조 설명. 유지보수는 연간 계약금의 15%로 제안, 고객사는 10%를 희망.",
+        "ROS2 기반 센서 퓨전(LiDAR + 카메라) 기술 파트너십 논의. SDK 제공 범위 및 API 문서화 수준을 확인. 경쟁사가 이미 유사 제안을 했다는 정보 입수, 기술 차별성 강조 필요."
     )
+
+    private val internalMeetingSummaries = listOf(
+        "이 고객은 예산이 충분하니 풀패키지로 제안하는 방향으로 가자. 시뮬레이터 제외해도 마진율 35% 이상 유지 가능. 다음 미팅 전에 견적서 수정본(시뮬레이터 제외 버전) 발송 필요.",
+        "PoC 기술 난이도가 높아 기간을 3개월로 잡아야 한다는 결론. 2개월 완료 약속은 고객에게 하지 않기로 함. 기술팀 리소스 2명 추가 배정 검토.",
+        "내부 마진율 40% 이상 유지 원칙 재확인. 고객 역제안 2억 5천은 마진율 28%로 수용 불가. 3억 유지하되 유지보수 비율 조정으로 패키지 가치 높이는 방향 논의.",
+        "경쟁사 A사가 이미 고객사에 접촉해 유사 솔루션 제안 완료. 빠르게 움직여야 함. 기술 우위(정확도, 지연 시간) 데이터를 비교 자료로 준비해 다음 미팅에서 제시 예정.",
+        "Q2 파이프라인 중 대형 딜 3건 확인. 삼성전자 건이 가장 규모가 크고 성사 가능성 높음. 현대차는 의사결정자 교체로 재접근 필요.",
+        "Isaac Sim 시뮬레이터는 제외한다는 방침 재확인. 소스코드는 절대 주지 않는다. 우리 팀에서 사용하고 싶은 내용만 활용하는 형태로 납품. 시뮬레이터 패키징 및 이관은 별도 옵션.",
+        "고객 피드백 취합 결과 대시보드 UX 불편 호소 3건. 기술팀이 다음 스프린트에서 수정 예정. 이 부분을 경쟁사 대비 개선 포인트로 활용 가능.",
+        "NDA 법무팀 검토 완료. 고객사 제안 조항 중 지식재산권 귀속 조항은 수용 불가. 표준 계약서 기준으로 재협상 요청 예정.",
+        "기술 지원 이슈 중 펌웨어 업그레이드 실패 케이스 1건 발생. 원인 분석 완료(드라이버 호환성). 다음 릴리스에 핫픽스 포함 예정. 고객 커뮤니케이션은 영업팀이 담당.",
+        "시스템 인테그레이터 2사와 파트너십 MOU 추진 중. 이를 통해 설치 및 현장 지원 역량 강화. 파트너 수수료 구조는 영업팀 마진에 영향 없도록 설계."
+    )
+
+    // Combined pool: customer meeting summaries first, then internal
+    private val allSummaries = customerMeetingSummaries + internalMeetingSummaries
 
     private val keywordPool = listOf(
-        Keyword("Physical AI", KeywordCategory.PRODUCT, 5),
-        Keyword("로봇 자동화", KeywordCategory.PRODUCT, 4),
-        Keyword("가격 협상", KeywordCategory.PRICE, 3),
-        Keyword("비전 시스템", KeywordCategory.TECHNICAL, 3),
-        Keyword("경쟁사 분석", KeywordCategory.COMPETITOR, 2),
-        Keyword("스마트 팩토리", KeywordCategory.BUSINESS, 4),
-        Keyword("자율주행", KeywordCategory.TECHNICAL, 3),
-        Keyword("PoC", KeywordCategory.BUSINESS, 2),
-        Keyword("ROI", KeywordCategory.BUSINESS, 3),
-        Keyword("안전 인증", KeywordCategory.TECHNICAL, 2),
-        Keyword("엣지 AI", KeywordCategory.TECHNICAL, 2),
+        Keyword("Isaac Sim", KeywordCategory.PRODUCT, 5),
+        Keyword("로봇 팔", KeywordCategory.PRODUCT, 4),
+        Keyword("AMR", KeywordCategory.PRODUCT, 4),
         Keyword("디지털 트윈", KeywordCategory.PRODUCT, 3),
+        Keyword("엣지 AI", KeywordCategory.TECHNICAL, 3),
+        Keyword("Fleet 관리", KeywordCategory.PRODUCT, 3),
+        Keyword("협동 로봇", KeywordCategory.PRODUCT, 4),
+        Keyword("예지보전", KeywordCategory.PRODUCT, 3),
+        Keyword("라이선스", KeywordCategory.PRICE, 4),
+        Keyword("연간 계약", KeywordCategory.PRICE, 3),
+        Keyword("할인", KeywordCategory.PRICE, 3),
+        Keyword("유지보수", KeywordCategory.PRICE, 3),
+        Keyword("경쟁사", KeywordCategory.COMPETITOR, 3),
+        Keyword("대안", KeywordCategory.COMPETITOR, 2),
+        Keyword("벤치마크", KeywordCategory.COMPETITOR, 2),
+        Keyword("API", KeywordCategory.TECHNICAL, 2),
+        Keyword("SDK", KeywordCategory.TECHNICAL, 2),
+        Keyword("ROS2", KeywordCategory.TECHNICAL, 3),
+        Keyword("시뮬레이션", KeywordCategory.TECHNICAL, 3),
         Keyword("센서 퓨전", KeywordCategory.TECHNICAL, 2),
-        Keyword("Fleet 관리", KeywordCategory.PRODUCT, 2),
-        Keyword("예지보전", KeywordCategory.PRODUCT, 2),
-        Keyword("5G 통신", KeywordCategory.TECHNICAL, 1),
-        Keyword("대량 구매", KeywordCategory.PRICE, 2),
-        Keyword("SLA", KeywordCategory.BUSINESS, 2),
-        Keyword("유지보수", KeywordCategory.BUSINESS, 3),
-        Keyword("품질검사", KeywordCategory.PRODUCT, 4)
+        Keyword("ROI", KeywordCategory.BUSINESS, 4),
+        Keyword("생산성", KeywordCategory.BUSINESS, 3),
+        Keyword("도입 효과", KeywordCategory.BUSINESS, 3),
+        Keyword("마진율", KeywordCategory.BUSINESS, 2),
+        Keyword("PoC", KeywordCategory.BUSINESS, 4)
     )
 
-    private val speakers = listOf("김민수", "이정훈", "박서연", "최동현", "정유진", "한지민", "오승우", "윤하늘", "신재호", "강미래", "영업팀 김대리", "기술팀 박과장", "CTO 이사")
+    private val customerStatements = listOf(
+        "Isaac Sim 라이선스는 별도로 구매해야 하나요, 아니면 패키지에 포함되나요?",
+        "PoC 결과가 기대에 못 미치면 본계약 없이 종료할 수 있나요?",
+        "온프레미스 배포가 가능한가요? 클라우드 의존 없이 운용하고 싶습니다.",
+        "로봇 팔 고장 시 교체 또는 수리 기간은 얼마나 됩니까?",
+        "타사 로봇 장비와의 호환성은 어느 수준으로 지원되나요?",
+        "소스코드를 납품받을 수 있나요? 자체 커스터마이징이 필요합니다.",
+        "연간 계약 말고 3년 장기 계약 시 추가 할인이 있나요?",
+        "ROI를 실제로 달성한 레퍼런스 고객 사례를 보여줄 수 있나요?",
+        "경쟁사 제품 대비 구체적인 기술 우위를 데이터로 제시해주세요.",
+        "유지보수 비율 15%는 너무 높습니다. 10%로 조정 가능한가요?",
+        "예산이 올해 안에 집행되어야 합니다. 계약 후 설치까지 얼마나 걸리나요?",
+        "엣지 AI 추론 지연이 50ms 이하라는 것을 실제로 증명해주세요.",
+        "글로벌 공장에도 동일한 솔루션을 적용할 수 있나요?",
+        "데이터는 외부로 전송되지 않는다고 보장할 수 있나요?",
+        "ROS2 기반이라면 우리 기존 로봇 인프라와 통합 가능합니까?"
+    )
 
-    private val statementTexts = listOf(
-        "이번 PoC 결과가 기대 이상이었습니다. 본격 도입을 검토하겠습니다.",
-        "가격이 좀 더 경쟁력 있으면 좋겠는데, 대량 구매 시 할인이 가능한가요?",
-        "로봇의 안전성에 대해 좀 더 자세한 데이터가 필요합니다.",
-        "현재 라인에 바로 투입 가능한 모델이 있나요?",
-        "유지보수 비용이 총 소유비용에서 큰 비중을 차지하는데, 연간 계약 조건은?",
-        "경쟁사 제품 대비 어떤 차별점이 있는지 구체적으로 설명해주세요.",
-        "AI 학습 데이터는 우리 공장 환경에 맞춤화가 가능한가요?",
-        "납기 일정이 중요합니다. 계약 후 몇 주 내 설치가 가능한지요?",
-        "우리 기존 MES 시스템과의 연동은 어떻게 되나요?",
-        "ROI를 6개월 내 달성할 수 있다는 근거를 보여주세요.",
-        "시범 운영 기간을 3개월로 제안드립니다.",
-        "품질검사 정확도 99.5% 이상을 보장할 수 있나요?",
-        "원격 모니터링 기능이 해외 공장에서도 사용 가능한가요?",
-        "기술 지원 인력 상주가 필요한 기간은 얼마나 되나요?",
-        "예산은 올해 안에 집행해야 해서, 빠른 계약 진행이 필요합니다."
+    private val salesStatements = listOf(
+        "시뮬레이터는 없이 한다고 했으나 명시한 적은 없어서 고객이 헷갈릴 수 있음. 다음 미팅 전에 명확히 정리 필요.",
+        "Isaac Sim 시뮬레이터는 제외합니다. 소스코드는 드리지 않습니다.",
+        "시뮬레이터 패키징 및 이관은 별도 옵션으로 제공 가능합니다.",
+        "가격은 연간 3억으로 제안드렸으나, 고객사는 2억 5천을 원하고 있습니다.",
+        "PoC는 무료로 진행하되, 본계약 시 비용에 포함하는 구조입니다.",
+        "유지보수는 연간 계약금의 15%로 제안드립니다.",
+        "하드웨어는 별도이며, 소프트웨어 라이선스만 이번 계약에 포함됩니다.",
+        "경쟁사 대비 기술 우위를 데이터로 강조해야 할 시점입니다.",
+        "내부적으로 마진율 40% 이상은 유지해야 합니다.",
+        "이 고객은 예산이 충분하니 풀패키지로 가는 것이 유리합니다.",
+        "경쟁사가 이미 접촉했으니 빠르게 움직여야 합니다.",
+        "기술적 난이도가 높아서 PoC 기간을 3개월로 잡겠습니다.",
+        "우리 팀에서 사용하고 싶은 내용만 활용하는 형태로 납품합니다.",
+        "3년 장기 계약 시 20% 할인 조건을 제시할 수 있습니다.",
+        "온프레미스 단독 운용 가능하며 외부 데이터 전송 없음을 보장합니다."
     )
 
     private val knowledgeArticles = listOf(
-        KnowledgeArticle(1L, "Physical AI 로봇 제품 라인업", "당사의 Physical AI 로봇은 산업용, 물류용, 협동 로봇 3개 라인으로 구성", "제품", 0.95f),
-        KnowledgeArticle(2L, "로봇 자동화 ROI 분석 가이드", "평균 18개월 내 투자비 회수, 인건비 40% 절감 효과", "영업", 0.88f),
-        KnowledgeArticle(3L, "경쟁사 비교 분석표", "주요 경쟁사 대비 가격, 성능, 서비스 비교 데이터", "경쟁", 0.82f),
-        KnowledgeArticle(4L, "안전 인증 현황", "ISO 10218, ISO/TS 15066, CE, KC 인증 보유", "인증", 0.90f),
-        KnowledgeArticle(5L, "스마트 팩토리 구축 사례집", "삼성전자, 현대자동차 등 주요 고객 구축 사례", "사례", 0.85f),
-        KnowledgeArticle(6L, "AI 비전 시스템 기술 백서", "딥러닝 기반 품질검사 시스템의 기술 사양 및 정확도 데이터", "기술", 0.92f),
-        KnowledgeArticle(7L, "가격 정책 가이드라인", "수량별 할인율, 연간 계약 할인, 번들 할인 정책", "가격", 0.78f),
-        KnowledgeArticle(8L, "유지보수 SLA 기준표", "골드/실버/브론즈 등급별 SLA 조건 및 비용", "서비스", 0.80f)
+        KnowledgeArticle(1L, "Physical AI 로봇 제품 라인업", "Isaac Sim 기반 시뮬레이션 환경, 6축 로봇 팔, AMR 3개 라인업 구성. 소프트웨어 라이선스와 하드웨어 별도 계약 구조.", "제품", 0.95f),
+        KnowledgeArticle(2L, "로봇 자동화 ROI 분석 가이드", "평균 18개월 내 투자비 회수. 인건비 40% 절감, 불량률 30% 감소. 레퍼런스 고객 5사 데이터 포함.", "영업", 0.88f),
+        KnowledgeArticle(3L, "경쟁사 비교 분석표 (2026 Q1)", "경쟁사 A: 가격 낮으나 ROS2 미지원. 경쟁사 B: Fleet 관리 미흡. 당사 기술 우위: 지연 50ms, 정확도 99.7%.", "경쟁", 0.82f),
+        KnowledgeArticle(4L, "안전 인증 현황", "ISO 10218, ISO/TS 15066, CE, KC 인증 보유. Cobot 라인은 추가 위험성 평가 필요.", "인증", 0.90f),
+        KnowledgeArticle(5L, "스마트 팩토리 구축 사례집", "반도체 공정 6축 로봇 팔 도입 사례, 물류센터 AMR 100대 운용 사례 포함.", "사례", 0.85f),
+        KnowledgeArticle(6L, "Isaac Sim 라이선스 정책", "시뮬레이터 패키징은 별도 옵션. 소스코드 비제공 원칙. 바이너리 전용 납품. 연간 라이선스 갱신 필요.", "정책", 0.92f),
+        KnowledgeArticle(7L, "가격 정책 가이드라인", "소프트웨어 라이선스 기본 3억/년. 유지보수 15%. 3년 계약 시 20% 할인. 마진율 40% 유지 기준.", "가격", 0.78f),
+        KnowledgeArticle(8L, "엣지 AI 기술 백서", "NVIDIA Jetson Orin 기반. 추론 지연 50ms 이하. 온프레미스 단독 운용. 클라우드 의존도 0.", "기술", 0.91f)
     )
 
     private val predictedQuestionPool = listOf(
-        PredictedQuestion(1L, "로봇 도입 시 기존 작업자 재배치 방안은?", "단계적 전환 프로그램을 통해 기존 작업자를 로봇 운영/관리 인력으로 재교육합니다.", listOf("재배치 프로그램", "교육 과정"), 0.85f),
-        PredictedQuestion(2L, "로봇 장애 시 생산라인 중단 위험은 어떻게 대응하나요?", "이중화 구성과 24시간 원격 모니터링으로 장애 발생 시 4시간 내 복구를 보장합니다.", listOf("SLA", "이중화"), 0.90f),
-        PredictedQuestion(3L, "경쟁사 대비 가격이 높은 이유는?", "AI 학습 기반 자가 최적화 기능과 예지보전 기능이 포함된 토탈 솔루션으로, TCO 기준으로는 20% 저렴합니다.", listOf("TCO 분석", "차별점"), 0.82f),
-        PredictedQuestion(4L, "해외 공장 도입 시 현지 지원은 가능한가요?", "글로벌 파트너 네트워크를 통해 주요 국가에서 현지 기술 지원이 가능합니다.", listOf("글로벌 지원", "파트너"), 0.75f),
-        PredictedQuestion(5L, "데이터 보안은 어떻게 보장되나요?", "온프레미스 엣지 처리로 데이터가 외부로 전송되지 않으며, ISO 27001 인증을 보유하고 있습니다.", listOf("보안 인증", "엣지 처리"), 0.88f),
-        PredictedQuestion(6L, "추가 로봇 확장 시 비용 구조는?", "초기 도입 후 추가 로봇은 대당 10% 할인이 적용되며, Fleet 라이선스로 관리 비용을 절감할 수 있습니다.", listOf("확장 할인", "Fleet 라이선스"), 0.80f)
+        PredictedQuestion(1L, "Isaac Sim 라이선스 별도 구매가 필요한가요?", "Isaac Sim 시뮬레이터는 별도 옵션입니다. 기본 계약에는 포함되지 않으며, 연간 추가 비용이 발생합니다. 소스코드는 제공되지 않습니다.", listOf("Isaac Sim", "라이선스", "시뮬레이터"), 0.93f),
+        PredictedQuestion(2L, "로봇 팔 고장 시 교체 기간은 얼마나 됩니까?", "골드 SLA 기준 4시간 내 현장 출동, 48시간 내 부품 교체를 보장합니다. 예비 부품은 국내 물류 창고에 상시 비축합니다.", listOf("SLA", "유지보수", "교체 기간"), 0.89f),
+        PredictedQuestion(3L, "타사 로봇과의 호환성은 어떻게 되나요?", "ROS2 표준을 지원하므로 ROS2 호환 로봇 장비와 통합 가능합니다. Fleet 관리 플랫폼은 벤더 중립적으로 설계되어 있습니다.", listOf("ROS2", "호환성", "Fleet 관리"), 0.85f),
+        PredictedQuestion(4L, "PoC 결과가 나쁘면 계약 취소가 가능한가요?", "PoC 결과물 기준 충족 여부를 계약서에 명시합니다. 미충족 시 본계약 의무가 없는 조건부 계약 구조를 제안할 수 있습니다.", listOf("PoC", "계약 조건", "해지"), 0.87f),
+        PredictedQuestion(5L, "온프레미스 배포가 가능한가요? 클라우드만 되나요?", "엣지 AI 아키텍처로 설계되어 클라우드 없이 온프레미스 단독 운용이 가능합니다. 모든 추론은 로컬에서 처리됩니다.", listOf("온프레미스", "엣지 AI", "클라우드"), 0.91f),
+        PredictedQuestion(6L, "경쟁사 대비 가격이 높은 이유는 무엇인가요?", "Fleet 관리, 예지보전, 디지털 트윈 연동이 모두 포함된 토탈 솔루션입니다. TCO 기준으로 3년 누적 비용은 경쟁사 대비 20% 저렴합니다.", listOf("TCO", "경쟁사", "차별성"), 0.84f)
+    )
+
+    // Price commitment data: (amount, currency, condition, timeOffset)
+    private data class PriceData(val amount: Double, val currency: String, val condition: String, val timeOffset: String)
+
+    private val priceDataPool = listOf(
+        PriceData(300_000_000.0, "KRW", "소프트웨어 라이선스 연간 계약 시", "10:30"),
+        PriceData(50_000_000.0, "KRW", "PoC 성공 조건부 (본계약 포함)", "15:00"),
+        PriceData(250_000_000.0, "KRW", "고객 역제안 (2억 5천)", "22:15"),
+        PriceData(120_000_000.0, "KRW", "유지보수 연간 계약 (계약금의 15%)", "08:45"),
+        PriceData(240_000_000.0, "KRW", "3년 장기 계약 시 20% 할인 적용", "14:00"),
+        PriceData(180_000_000.0, "KRW", "AMR 50대 대량 구매 기준", "11:20"),
+        PriceData(80_000_000.0, "KRW", "Isaac Sim 시뮬레이터 패키징 별도 옵션", "16:30"),
+        PriceData(500_000_000.0, "KRW", "Fleet 100대 + 디지털 트윈 풀패키지", "09:00"),
+        PriceData(30_000_000.0, "KRW", "엣지 AI 프로세서 파일럿 (3개월)", "13:45"),
+        PriceData(90_000_000.0, "KRW", "협동 로봇 8대 설치 및 교육 포함", "17:00")
+    )
+
+    // Action item data: (description, assignee, dueDayOffset, status)
+    private data class ActionData(val description: String, val assignee: String, val dueDayOffset: Int, val status: ActionItemStatus)
+
+    private val actionDataPool = listOf(
+        ActionData("견적서 수정본 발송 (시뮬레이터 제외 버전)", "영업팀 김대리", 3, ActionItemStatus.OPEN),
+        ActionData("경쟁사 비교 자료 준비 (기술 우위 데이터 포함)", "기술팀 박과장", 5, ActionItemStatus.OPEN),
+        ActionData("PoC 환경 세팅 일정 확정", "기술팀 박과장", 7, ActionItemStatus.OPEN),
+        ActionData("법무팀 NDA 검토 요청", "영업팀 김대리", 3, ActionItemStatus.DONE),
+        ActionData("기술팀 데모 환경 준비 (Isaac Sim 포함)", "기술팀 박과장", 10, ActionItemStatus.OPEN),
+        ActionData("ROI 분석 자료 업데이트 (레퍼런스 2건 추가)", "영업팀 김대리", 5, ActionItemStatus.DONE),
+        ActionData("유지보수 비율 재조정 안 내부 승인 요청", "CTO 이사", 7, ActionItemStatus.OPEN),
+        ActionData("ROS2 SDK 호환성 검증 보고서 작성", "기술팀 박과장", 14, ActionItemStatus.OPEN),
+        ActionData("온프레미스 배포 시연 환경 준비", "기술팀 박과장", 5, ActionItemStatus.DONE),
+        ActionData("계약서 표준 조항 재검토 (IP 귀속 조항)", "법무팀", 7, ActionItemStatus.OPEN)
     )
 
     private var cachedCustomers: List<Customer>? = null
@@ -166,7 +218,7 @@ object MockDataGenerator {
                 industry = industry,
                 lastInteractionDate = "2026-03-${(10 + index).toString().padStart(2, '0')}",
                 totalConversations = 20,
-                summary = "Physical AI 로봇 솔루션 도입 검토 중인 $company 담당자 $contact"
+                summary = "$company - Physical AI 로봇 솔루션 도입 검토 중. 담당자: $contact. 주요 관심사: Isaac Sim 라이선스, PoC 조건, 가격 협상."
             )
         }
         cachedCustomers = customers
@@ -183,69 +235,112 @@ object MockDataGenerator {
         var actionId = 1L
 
         for (customer in customers) {
-            val count = 20
-            for (i in 0 until count) {
-                val isCustomerMeeting = i % 3 != 2
+            for (i in 0 until 20) {
+                // First 10 are CUSTOMER_MEETING, last 10 are INTERNAL_MEETING
+                val isCustomerMeeting = i < 10
                 val type = if (isCustomerMeeting) ConversationType.CUSTOMER_MEETING else ConversationType.INTERNAL_MEETING
-                val title = if (isCustomerMeeting) meetingTitles[i % meetingTitles.size] else internalTitles[i % internalTitles.size]
-                val sentiment = when (i % 3) {
-                    0 -> Sentiment.POSITIVE
-                    1 -> Sentiment.NEUTRAL
+                val meetingIndex = i % 10
+                val title = if (isCustomerMeeting) meetingTitles[meetingIndex] else internalTitles[meetingIndex]
+                val summaryIndex = if (isCustomerMeeting) meetingIndex else 10 + meetingIndex
+                val summary = allSummaries[summaryIndex]
+
+                val sentiment = when (i % 5) {
+                    0, 1 -> Sentiment.POSITIVE
+                    2, 3 -> Sentiment.NEUTRAL
                     else -> Sentiment.NEGATIVE
                 }
-                val day = (1 + i).toString().padStart(2, '0')
+
+                val day = ((i % 20) + 1).toString().padStart(2, '0')
                 val month = if (i < 10) "02" else "03"
 
-                val keywords = listOf(
-                    keywordPool[i % keywordPool.size],
-                    keywordPool[(i + 3) % keywordPool.size]
-                )
+                // 3-5 keywords per conversation
+                val kwCount = 3 + (i % 3)
+                val keywords = (0 until kwCount).map { k ->
+                    keywordPool[(i * 3 + k * 7) % keywordPool.size]
+                }.distinctBy { it.text }.take(kwCount)
 
-                val statements = listOf(
-                    KeyStatement(
-                        id = statementId++,
-                        speaker = customer.contactName ?: customer.companyName,
-                        text = statementTexts[i % statementTexts.size],
-                        timestamp = "${(i * 3).toString().padStart(2, '0')}:${(i * 7 % 60).toString().padStart(2, '0')}",
-                        sentiment = sentiment,
-                        isImportant = i % 4 == 0
-                    ),
-                    KeyStatement(
-                        id = statementId++,
-                        speaker = "영업팀 김대리",
-                        text = "네, 해당 부분은 저희가 충분히 지원 가능합니다.",
-                        timestamp = "${((i * 3) + 1).toString().padStart(2, '0')}:${((i * 7 + 15) % 60).toString().padStart(2, '0')}",
-                        sentiment = Sentiment.POSITIVE,
-                        isImportant = false
+                // 2-4 key statements per conversation
+                val stmtCount = 2 + (i % 3)
+                val statements = mutableListOf<KeyStatement>()
+                for (s in 0 until stmtCount) {
+                    val isCustomerSpeak = s % 2 == 0
+                    val textPool = if (isCustomerMeeting && isCustomerSpeak) customerStatements else salesStatements
+                    val textIndex = (i * 7 + s * 13) % textPool.size
+                    val speaker = if (isCustomerMeeting && isCustomerSpeak) {
+                        customer.contactName ?: customer.companyName
+                    } else if (isCustomerMeeting) {
+                        "영업팀 김대리"
+                    } else {
+                        when (s % 3) {
+                            0 -> "영업팀 김대리"
+                            1 -> "기술팀 박과장"
+                            else -> "CTO 이사"
+                        }
+                    }
+                    val hour = (9 + s * 3 + i % 6).toString().padStart(2, '0')
+                    val minute = ((s * 17 + i * 3) % 60).toString().padStart(2, '0')
+                    statements.add(
+                        KeyStatement(
+                            id = statementId++,
+                            speaker = speaker,
+                            text = textPool[textIndex],
+                            timestamp = "$hour:$minute",
+                            sentiment = if (s % 3 == 0) sentiment else Sentiment.NEUTRAL,
+                            isImportant = s == 0 || (i % 5 == 0)
+                        )
                     )
-                )
+                }
 
-                val priceCommitments = if (i % 5 == 0) {
-                    listOf(
+                // 1-2 price commitments (not all conversations)
+                val priceCommitments = if (i % 3 != 1) {
+                    val pc1 = priceDataPool[(i * 3) % priceDataPool.size]
+                    val result = mutableListOf(
                         PriceCommitment(
                             id = priceId++,
-                            amount = (i + 1) * 5_0000_0000.0,
-                            currency = "KRW",
-                            condition = "연간 유지보수 계약 포함 시",
-                            mentionedAt = "${(i * 3).toString().padStart(2, '0')}:30"
+                            amount = pc1.amount,
+                            currency = pc1.currency,
+                            condition = pc1.condition,
+                            mentionedAt = pc1.timeOffset
                         )
                     )
-                } else emptyList()
-
-                val actionItems = if (i % 3 == 0) {
-                    listOf(
-                        ActionItem(
-                            id = actionId++,
-                            description = "PoC 환경 세팅 및 테스트 일정 확정",
-                            assignee = "기술팀 박과장",
-                            dueDate = "2026-04-${(10 + i).toString().padStart(2, '0')}",
-                            status = if (i < 10) ActionItemStatus.DONE else ActionItemStatus.OPEN
+                    if (i % 2 == 0) {
+                        val pc2 = priceDataPool[(i * 3 + 5) % priceDataPool.size]
+                        result.add(
+                            PriceCommitment(
+                                id = priceId++,
+                                amount = pc2.amount,
+                                currency = pc2.currency,
+                                condition = pc2.condition,
+                                mentionedAt = pc2.timeOffset
+                            )
                         )
-                    )
+                    }
+                    result
                 } else emptyList()
 
-                val predictedQuestions = if (i % 4 == 0) {
-                    listOf(predictedQuestionPool[i % predictedQuestionPool.size])
+                // 1-3 action items per conversation
+                val actionCount = 1 + (i % 3)
+                val actionItems = (0 until actionCount).map { a ->
+                    val ad = actionDataPool[(i * 2 + a * 5) % actionDataPool.size]
+                    val dueMonth = if (i < 10) "04" else "05"
+                    val dueDay = ((ad.dueDayOffset + i) % 28 + 1).toString().padStart(2, '0')
+                    ActionItem(
+                        id = actionId++,
+                        description = ad.description,
+                        assignee = ad.assignee,
+                        dueDate = "2026-$dueMonth-$dueDay",
+                        status = ad.status
+                    )
+                }
+
+                // 1-2 predicted questions (not all conversations)
+                val predictedQuestions = if (i % 3 != 2) {
+                    val pq1 = predictedQuestionPool[i % predictedQuestionPool.size]
+                    if (i % 4 == 0) {
+                        listOf(pq1, predictedQuestionPool[(i + 2) % predictedQuestionPool.size])
+                    } else {
+                        listOf(pq1)
+                    }
                 } else emptyList()
 
                 conversations.add(
@@ -255,8 +350,8 @@ object MockDataGenerator {
                         title = "${customer.companyName} - $title",
                         date = "2026-$month-$day",
                         type = type,
-                        duration = 30 + (i * 5) % 60,
-                        summary = summaries[i % summaries.size],
+                        duration = 30 + (i * 7) % 60,
+                        summary = summary,
                         sentiment = sentiment,
                         keywords = keywords,
                         keyStatements = statements,
@@ -276,9 +371,9 @@ object MockDataGenerator {
         val conversations = generateConversations()
         val cards = conversations.mapIndexed { index, conv ->
             val sentimentScore = when (conv.sentiment) {
-                Sentiment.POSITIVE -> 0.7f + (index % 3) * 0.1f
-                Sentiment.NEGATIVE -> 0.1f + (index % 3) * 0.1f
-                Sentiment.NEUTRAL -> 0.4f + (index % 3) * 0.1f
+                Sentiment.POSITIVE -> 0.70f + (index % 3) * 0.09f
+                Sentiment.NEGATIVE -> 0.10f + (index % 3) * 0.08f
+                Sentiment.NEUTRAL -> 0.40f + (index % 3) * 0.09f
             }
             ContextCard(
                 id = conv.id,
