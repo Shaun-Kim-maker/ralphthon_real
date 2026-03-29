@@ -233,7 +233,7 @@
   - 포함: 디스패처검증, 취소전파, 중복호출, 레이스컨디션, Flow수집취소
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-36**: Domain Layer Integration Sanity 20 tests
+- [x] **M-36**: Domain Layer Integration Sanity 20 tests ← DONE 2026-03-29T15:20
   - 테스트: 20 | 스펙: test-specs/domain-tests.md § 10
   - 산출물: test/.../domain/DomainSanityTest.kt
   - 포함: UseCase→Repository 연결 검증, 전체 9개 UseCase 기본 호출, ConversationType 전파
@@ -245,30 +245,30 @@
 ## Phase 4: ViewModels + State Machines (Session 4-5)
 예상 시간: 60분 | 마일스톤: M-37 ~ M-50
 
-- [ ] **M-37**: TDD CustomerListViewModel 30 tests
+- [x] **M-37**: TDD CustomerListViewModel 30 tests ← DONE 2026-03-29T15:30
   - 테스트: 30 | 스펙: test-specs/domain-tests.md § 1
   - 산출물: ui/customer/CustomerListViewModel.kt, test/.../ui/customer/CustomerListViewModelTest.kt
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-38**: TDD CardNewsListViewModel 35 tests
+- [x] **M-38**: TDD CardNewsListViewModel 35 tests ← DONE 2026-03-29T15:45
   - 테스트: 35 | 스펙: test-specs/domain-tests.md § 2
   - 산출물: ui/card/CardNewsListViewModel.kt, test/.../ui/card/CardNewsListViewModelTest.kt
   - 포함: ConversationType 필터탭 (전체/고객미팅/사내회의)
   - 검증: 35 tests PASS, git commit + push
 
-- [ ] **M-39**: TDD CardDetailViewModel 30 tests
+- [x] **M-39**: TDD CardDetailViewModel 30 tests ← DONE 2026-03-29T16:00
   - 테스트: 30 | 스펙: test-specs/domain-tests.md § 3
   - 산출물: ui/card/CardDetailViewModel.kt, test/.../ui/card/CardDetailViewModelTest.kt
   - 포함: PriceCommitment/ActionItem/PredictedQuestion/Knowledge 패널 상태
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-40**: TDD CustomerBriefViewModel 40 tests (킬링 포인트)
+- [x] **M-40**: TDD CustomerBriefViewModel 40 tests (킬링 포인트) ← DONE 2026-03-29T16:15
   - 테스트: 40 | 스펙: test-specs/domain-tests.md § 19
   - 산출물: ui/customer/CustomerBriefViewModel.kt, test/.../ui/customer/CustomerBriefViewModelTest.kt
   - 포함: 브리핑로딩, 마지막대화요약(고객+사내회의통합), 예상질문표시, 가격히스토리, 빈데이터, 에러, 새로고침
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-41**: TDD SearchViewModel 35 + UploadViewModel 30 tests
+- [x] **M-41**: TDD SearchViewModel 35 + UploadViewModel 30 tests ← DONE 2026-03-29T16:30
   - 테스트: 65 | 스펙: test-specs/domain-tests.md § 4, 20
   - 산출물: ui/search/SearchViewModel.kt, ui/upload/UploadViewModel.kt, test/*Test.kt
   - 포함: Search(디바운스/ConversationType필터/최근검색어) + Upload(파일선택/ConversationType선택/진행률/취소)
