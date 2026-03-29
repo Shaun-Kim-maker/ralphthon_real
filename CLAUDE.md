@@ -2,6 +2,7 @@
 
 ## Overview
 해커톤(랄프톤)에서 TDD-first 방법론으로 개발하는 Android 애플리케이션.
+앱 이름: **Zipi** (지피지기면 백전백승 — 知彼知己 百戰百勝)
 이 프로젝트는 **사람 개입 없이 완전 자율 실행**됩니다.
 
 ## Tech Stack
@@ -39,11 +40,20 @@ app/src/main/java/com/ralphthon/app/
 ## 자율 실행 프로토콜
 
 ### 세션 시작 시 (매번 반드시 실행)
-1. `RALPH_BACKLOG.md` 읽기 → 첫 번째 `- [ ]` 마일스톤 찾기
-2. `git log --oneline -3` → 마지막 커밋 확인
-3. `./gradlew.bat compileDebugKotlin --no-daemon 2>&1 | tail -3` → 빌드 상태 확인
-4. 해당 마일스톤의 test-spec 섹션**만** 읽기 (전체 파일 읽지 않음)
-5. 즉시 TDD 루프 시작
+1. `.omc/specs/deep-interview-crm-sales.md` 읽기 → 앱의 목표/도메인모델/킬링포인트 파악
+2. `RALPH_BACKLOG.md` 읽기 → 첫 번째 `- [ ]` 마일스톤 찾기
+3. `git log --oneline -3` → 마지막 커밋 확인
+4. `./gradlew.bat compileDebugKotlin --no-daemon 2>&1 | tail -3` → 빌드 상태 확인 (M-01 전이면 스킵)
+5. 해당 마일스톤의 test-spec 섹션**만** 읽기 (전체 파일 읽지 않음)
+6. 즉시 TDD 루프 시작 — 사용자에게 질문하지 않고 바로 실행
+
+### 새 세션이 알아야 할 핵심 파일
+- `.omc/specs/deep-interview-crm-sales.md`: 앱 전체 스펙 (Ambiguity 0.05)
+- `RALPH_BACKLOG.md`: 마일스톤 76개 + Tier 확장 프로토콜
+- `CLAUDE.md`: 자율 실행 규칙, TDD, 컨텍스트 압축, 터미널 규칙
+- `docs/harness-engineering-reference.md`: 우승팀 전략 참고
+- `test-specs/`: 마일스톤별 테스트 명세 (해당 섹션만 읽기)
+- `.claude/settings.json`: 전체 권한 허용 (멈춤 방지)
 
 ### TDD 루프 (마일스톤별)
 1. test-spec에서 해당 섹션의 테스트 목록 읽기
@@ -191,10 +201,94 @@ UI Screen 구현 시 반드시 이 파일을 참조하라.
 - 외부 라이브러리를 바꾸거나 구조를 갈아엎더라도 목표 자체는 무조건 100% 달성해야만 다음 마일스톤으로 넘어갈 수 있다
 - 테스트 수를 줄이거나 assertion을 약하게 만드는 것은 절대 금지
 
-### 마일스톤 간 컨텍스트 리셋
-- 하나의 마일스톤을 성공적으로 git push 하고 나면, 이전 마일스톤에서 겪었던 시행착오나 에러 로그, 토론 내역은 모두 잊는다
-- 오직 RALPH_BACKLOG.md의 다음 목표와 해당 test-spec 섹션만 새로 읽어들인 후 완전히 새로운 마음으로 루프를 재시작한다
-- 이전 마일스톤에서 생성한 파일을 다시 읽지 않는다 (현재 마일스톤에서 import해야 하는 경우만 예외)
+### 컨텍스트 압축 (마라톤 랄프 핵심)
+
+#### 원칙: Subagent 격리로 메인 루프 컨텍스트를 가볍게 유지
+마일스톤의 무거운 작업(코드 작성, 에러 디버깅, 테스트 반복)은 반드시 **Agent(subagent_type="oh-my-claudecode:executor")에게 위임**한다. 시행착오와 에러 로그는 subagent 내부에서 소비되고, 메인 루프에는 결과 요약만 반환된다.
+
+#### 마일스톤별 소크라틱 리즈닝 (모호성 제거)
+subagent에게 마일스톤을 위임하기 전, 메인 루프가 스스로 3~5개의 질문을 던져 모호성을 제거한다:
+1. "이 마일스톤의 산출물 파일 경로가 기존 코드와 충돌하지 않는가?"
+2. "테스트에서 import해야 할 클래스의 정확한 패키지 경로는?"
+3. "이 마일스톤의 테스트가 이전 마일스톤의 코드에 의존하는가? 의존한다면 어떤 파일?"
+4. "ConversationType 분기가 필요한 마일스톤인가? 필요하다면 어디서?"
+5. "신규 모델(PriceCommitment/ActionItem/PredictedQuestion)이 이 마일스톤에 포함되는가?"
+이 질문들의 답을 subagent 프롬프트에 명시적으로 포함시킨다. 질문은 사용자에게 하지 않고 코드베이스를 읽어서 스스로 답한다.
+
+#### 메인 루프의 마일스톤 실행 패턴
+```
+1. RALPH_BACKLOG.md에서 다음 `- [ ]` 마일스톤 읽기
+2. 해당 test-spec 섹션만 읽기 (전체 파일 X, 해당 섹션만 offset/limit)
+3. 소크라틱 리즈닝: 위 5개 질문에 스스로 답하기 (코드베이스 확인)
+4. Agent(executor)에게 위임:
+   - 프롬프트에 마일스톤 목표 + test-spec 내용 + 파일 경로 전달
+   - subagent가 TDD 루프 (RED → GREEN → REFACTOR) 수행
+   - subagent가 `./gradlew.bat test --no-daemon 2>&1 | tail -5` 로 검증
+   - subagent가 결과를 1~3줄 요약으로 반환
+4. 메인 루프: 결과 확인 → git add → git commit → git push
+5. RALPH_BACKLOG.md 업데이트 (`- [x]`)
+6. 다음 마일스톤으로 (이전 마일스톤의 시행착오는 subagent와 함께 소멸)
+```
+
+#### 메인 루프에서 절대 하지 않는 것
+- gradlew 전체 출력을 직접 읽지 않는다 (subagent가 처리)
+- 에러 스택트레이스를 직접 분석하지 않는다 (subagent가 처리)
+- 프로덕션 코드를 직접 작성하지 않는다 (subagent가 처리)
+- 이전 마일스톤에서 생성한 파일을 다시 읽지 않는다
+
+#### 메인 루프가 직접 하는 것 (가벼운 작업만)
+- RALPH_BACKLOG.md 읽기/업데이트
+- test-spec 해당 섹션만 읽기
+- git add, git commit, git push (단순 명령어)
+- subagent 위임 및 결과 수신
+
+#### 컨텍스트 예산
+- 마일스톤당 메인 루프 소비: ~500 토큰
+- 58개 마일스톤 전체: ~29,000 토큰 (1M 컨텍스트의 3%)
+- Tier 확장 포함 170개 마일스톤: ~85,000 토큰 (1M의 8.5%)
+- 나머지 컨텍스트: CLAUDE.md, rules, 시스템 프롬프트 등 상시 점유분
+
+#### 압축 감지 후 복구
+컴파일 에러에서 import 경로가 틀린 경우 (자동 압축으로 인한 hallucination 징후):
+1. subagent에게 `find app/src/main -name "해당클래스.kt"` 로 실제 경로 확인 위임
+2. subagent가 올바른 import로 수정
+3. 이 패턴이 한 마일스톤 내에서 3회 이상 → 마일스톤 SKIP
+
+#### 좀비 루프 방지
+- subagent 위임 시 반드시 타임아웃 명시: 단순 작업 2분, 복잡 작업 5분
+- subagent가 같은 에러를 3회 반복 보고 → 해당 마일스톤 SKIP
+- SKIP 시 RALPH_BACKLOG.md에 `- [SKIP] 사유: {에러 요약}` 기록 후 다음 진행
+
+### Self-Healing (우승팀 전략)
+- 한 마일스톤에서 5번 이상 테스트를 통과하지 못하면, 요구사항(스펙)은 절대 타협하지 말고 내부 구현 방식(라이브러리 교체, 아키텍처 우회 등)만 완전히 갈아엎어 다시 시도
+- 스펙 확장 절대 금지: 코딩 중 아이디어가 떠올라도 절대 스펙을 임의로 확장하지 않는다
+- 70% Test-Driven: 테스트 코드가 전체 코드의 70%를 차지해야 한다
+- I Ship Code I Don't Read: 사람이 읽기 좋은 주석/포맷팅보다 에이전트가 이해하고 고치기 좋은 구조를 우선한다
+- 거짓 성공 방지: "테스트 통과했다"는 주장이 아니라 실제 쉘 실행 결과만 인정한다
+
+### 백엔드 API 전략
+- 백엔드 API는 존재하지 않음 — Mock API로 시연용 데이터 사용
+- MockWebServer 또는 로컬 JSON 파일로 API 응답 시뮬레이션
+- 모든 API Client는 실제 백엔드 연결 시 코드 변경 없이 전환 가능하도록 인터페이스 기반 설계
+- Mock 데이터 규모: 고객 10명 × 대화 20건 = 200건
+
+### 대화 유형
+- CUSTOMER_MEETING: 세일즈맨 ↔ 고객 간 외부 대화 (녹음 기반)
+- INTERNAL_MEETING: 해당 고객사 건에 대한 사내 팀 회의 (녹음 기반)
+- 두 유형 모두 업로드 → 분석 → 카드뉴스 생성
+- 고객 브리핑 시 두 유형이 통합되어 표시 (마지막 대화 요약에 사내 회의 내용 포함)
+
+### 신규 도메인 모델
+- PriceCommitment: amount, currency, condition, mentionedAt (별도 모델 — 3-agent 합의)
+- ActionItem: description, assignee, dueDate, status(OPEN/DONE) (별도 모델)
+- PredictedQuestion: question, suggestedAnswer, relatedKnowledge, confidence (Mock 데이터)
+- ConversationType: CUSTOMER_MEETING, INTERNAL_MEETING (enum)
+
+### 데모 킬링 포인트
+고객 탭 한 번 → 10초 안에 맥락 파악:
+1. 마지막 대화 요약 (고객 대화 + 사내 회의 통합)
+2. 예상 질문 + 추천 답변 + 관련 지식/키워드
+3. 가격/조건 히스토리
 
 ### 권한 및 네트워크
 - AndroidManifest.xml에 INTERNET, ACCESS_NETWORK_STATE 권한 포함

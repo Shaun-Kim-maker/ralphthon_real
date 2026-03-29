@@ -33,6 +33,14 @@ During app implementation (ralph execution phase), scope maps to prompt phases:
 | Domain Layer | `app/src/main/**/domain/`, `app/src/test/**/domain/` |
 | UI Layer | `app/src/main/**/ui/`, `app/src/main/**/presentation/`, `app/src/test/**/ui/`, `app/src/androidTest/` |
 | Integration | `app/src/test/**/integration/`, `app/src/androidTest/` |
+| **Phase 7 Bug Regression** | 모든 디렉토리 허용 (단, 아래 조건 충족 시에만) |
+
+**Phase 7 예외 규정:**
+Phase 7(최종 통합 테스트)에서 androidTest 실패로 인한 버그 수정 시에만 다른 Phase 범위의 코드 수정을 허용한다.
+- 조건 1: Phase 1~6이 모두 완료된 상태여야 한다 (RALPH_BACKLOG.md 기준)
+- 조건 2: connectedAndroidTest 실패 로그에서 원인 파일이 명확히 식별되어야 한다
+- 조건 3: 수정 범위는 실패 원인 파일과 해당 unit test에 한정한다 (연쇄 수정 금지)
+- 조건 4: 수정 후 기존 unit test 회귀 없음을 `./gradlew.bat test` 로 확인해야 한다
 
 Verification:
 ```

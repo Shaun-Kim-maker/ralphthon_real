@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Read(//c/Project/Ralphbeforetest/$APPDATA/Claude/**)",
-      "Read(//c/Project/Ralphbeforetest/$HOME/.claude/**)"
+      "Read(//c/Project/Ralphbeforetest/$HOME/.claude/**)",
+      "Read(//c/Project/Ralphbeforetest/$LOCALAPPDATA/Android/Sdk/platform-tools/**)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb.exe\" devices:*)",
+      "Read(//c/Project/Ralphbeforetest/$LOCALAPPDATA/Android/Sdk/emulator/**)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/emulator/emulator.exe\" -list-avds)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb.exe\" kill-server:*)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb.exe\" start-server:*)"
     ]
   }
 }

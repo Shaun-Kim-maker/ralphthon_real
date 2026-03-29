@@ -83,4 +83,12 @@
 - 컨텍스트가 차면 시스템 자동 압축에 의존
 - 위험: 압축 품질 저하 시 hallucination 가능
 
-**추천: Option A** — Phase별 프롬프트 분리가 더 안정적
+**Option C: ralph-relay.sh 자동 릴레이** (추천)
+- 외부 쉘 스크립트가 Claude CLI 세션을 자동으로 재시작
+- 세션 종료 → RALPH_BACKLOG.md 확인 → 남은 마일스톤 있으면 새 세션 시작
+- 진행 없으면 2회 재시도 후 해당 마일스톤 SKIP
+- 사용법: `bash scripts/ralph-relay.sh`
+- 중단: Ctrl+C
+- 최대 7세션, 세션 간 5초 대기
+
+**추천: Option C** — 완전 자동 릴레이, 사람 개입 제로
