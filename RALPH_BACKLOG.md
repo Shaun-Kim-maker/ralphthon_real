@@ -80,7 +80,7 @@
   - 포함: 고객별 CUSTOMER_MEETING + INTERNAL_MEETING 혼합, PriceCommitment/ActionItem/PredictedQuestion 포함
   - 검증: 15 tests PASS, git commit + push
 
-- [ ] **M-12**: Mock 데이터 직렬화/역직렬화 테스트 20개
+- [x] **M-12**: Mock 데이터 직렬화/역직렬화 테스트 20개 ← DONE 2026-03-29T11:20
   - 테스트: 20 | 스펙: test-specs/data-tests.md § 9
   - 산출물: test/.../data/mock/MockDataSerializationTest.kt
   - 포함: 200건 JSON 파싱, 신규 모델 필드 매핑, null safety, ConversationType enum
@@ -92,65 +92,65 @@
 ## Phase 2: Data Layer + API Clients + Mappers (Session 2)
 예상 시간: 50분 | 마일스톤: M-13 ~ M-24
 
-- [ ] **M-13**: TDD CustomerApiClient 25 tests
+- [x] **M-13**: TDD CustomerApiClient 25 tests ← DONE 2026-03-29T11:30
   - 테스트: 25 | 스펙: test-specs/data-tests.md § 1
   - 산출물: data/api/CustomerApiClient.kt, test/.../data/api/CustomerApiClientTest.kt
   - 포함: 성공(1건/10건/빈목록), HTTP에러(400/401/403/404/500/503), 네트워크(타임아웃/DNS/연결끊김), 페이징, 정렬, ConversationType필터
   - 검증: 25 tests PASS, git commit + push
 
-- [ ] **M-14**: TDD CardApiClient 30 tests
+- [x] **M-14**: TDD CardApiClient 30 tests ← DONE 2026-03-29T11:40
   - 테스트: 30 | 스펙: test-specs/data-tests.md § 2
   - 산출물: data/api/CardApiClient.kt, test/.../data/api/CardApiClientTest.kt
   - 포함: CRUD + ConversationType필터 + PriceCommitment/ActionItem 포함 응답 + 대용량 + 빈필드
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-15**: TDD BriefApiClient 25 tests
+- [x] **M-15**: TDD BriefApiClient 25 tests ← DONE 2026-03-29T11:50
   - 테스트: 25 | 스펙: test-specs/data-tests.md § 3
   - 산출물: data/api/BriefApiClient.kt, test/.../data/api/BriefApiClientTest.kt
   - 포함: 브리핑조회(성공/실패/빈데이터), PredictedQuestion 응답, 사내회의+고객미팅 통합요약, HTTP에러
   - 검증: 25 tests PASS, git commit + push
 
-- [ ] **M-16**: TDD KnowledgeApiClient 20 + UploadApiClient 20 tests
+- [x] **M-16**: TDD KnowledgeApiClient 20 + UploadApiClient 20 tests ← DONE 2026-03-29T12:00
   - 테스트: 40 | 스펙: test-specs/data-tests.md § 4-5
   - 산출물: data/api/KnowledgeApiClient.kt, data/api/UploadApiClient.kt, test/*Test.kt
   - 포함: Knowledge검색/필터 + Upload진행률/취소/ConversationType선택/대용량/에러
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-17**: TDD CustomerMapper 15 + CardMapper 20 tests
+- [x] **M-17**: TDD CustomerMapper 15 + CardMapper 20 tests ← DONE 2026-03-29T12:10
   - 테스트: 35 | 스펙: test-specs/data-tests.md § 6-7
   - 산출물: data/mapper/CustomerMapper.kt, data/mapper/CardMapper.kt, test/*MapperTest.kt
   - 포함: 정상매핑, null기본값, 특수문자, ContextCard 전필드, 신규모델 nested매핑
   - 검증: 35 tests PASS, git commit + push
 
-- [ ] **M-18**: TDD PriceCommitmentMapper + ActionItemMapper + PredictedQuestionMapper 30 tests
+- [x] **M-18**: TDD PriceCommitmentMapper + ActionItemMapper + PredictedQuestionMapper 30 tests ← DONE 2026-03-29T12:20
   - 테스트: 30 | 스펙: test-specs/data-tests.md § 8
   - 산출물: data/mapper/PriceCommitmentMapper.kt, data/mapper/ActionItemMapper.kt, data/mapper/PredictedQuestionMapper.kt, test/*MapperTest.kt (3개)
   - 포함: 각 모델별 정상/null/경계값/특수문자/통화형식/날짜형식
   - 검증: 30 tests PASS, git commit + push
 
-- [ ] **M-19**: TDD KnowledgeMapper + SearchResponseMapper 15 tests
+- [x] **M-19**: TDD KnowledgeMapper + SearchResponseMapper 15 tests ← DONE 2026-03-29T12:30
   - 테스트: 15 | 스펙: test-specs/data-tests.md § 9
   - 산출물: data/mapper/KnowledgeMapper.kt, data/mapper/SearchResponseMapper.kt, test/*MapperTest.kt
   - 검증: 15 tests PASS, git commit + push
 
-- [ ] **M-20**: TDD API Request Contract Tests 40개
+- [x] **M-20**: TDD API Request Contract Tests 40개 ← DONE 2026-03-29T12:40
   - 테스트: 40 | 스펙: test-specs/contract-tests.md § 1
   - 산출물: test/.../data/api/contract/RequestContractTest.kt
   - 포함: 5개 API HTTP method/path/query/headers + ConversationType파라미터 + Brief엔드포인트
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-21**: TDD Response Schema Validation 40개
+- [x] **M-21**: TDD Response Schema Validation 40개 ← DONE 2026-03-29T12:50
   - 테스트: 40 | 스펙: test-specs/contract-tests.md § 2
   - 산출물: test/.../data/api/contract/ResponseSchemaTest.kt
   - 포함: 전체 응답 스키마 + 신규 모델 필드 타입 검증
   - 검증: 40 tests PASS, git commit + push
 
-- [ ] **M-22**: TDD Null Safety Contract 35개
+- [x] **M-22**: TDD Null Safety Contract 35개 ← DONE 2026-03-29T13:00
   - 테스트: 35 | 스펙: test-specs/contract-tests.md § 3
   - 산출물: test/.../data/api/contract/NullSafetyContractTest.kt
   - 검증: 35 tests PASS, git commit + push
 
-- [ ] **M-23**: TDD Backward Compatibility Contract 35개
+- [x] **M-23**: TDD Backward Compatibility Contract 35개 ← DONE 2026-03-29T13:10
   - 테스트: 35 | 스펙: test-specs/contract-tests.md § 4
   - 산출물: test/.../data/api/contract/BackwardCompatibilityTest.kt
   - 검증: 35 tests PASS, git commit + push
