@@ -300,12 +300,12 @@
   - 산출물: ui/card/CardNewsListScreen.kt, ui/card/ContextCardItem.kt, ui/card/ConversationTypeFilterChip.kt, ui/card/CardDetailScreen.kt, ui/card/KnowledgePanel.kt, ui/card/StatementTimeline.kt, ui/card/PriceCommitmentSection.kt, ui/card/ActionItemSection.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-46**: SearchScreen + UploadScreen + BottomNavigation
+- [x] **M-46**: SearchScreen + UploadScreen + BottomNavigation ← DONE 2026-03-30T00:20
   - 산출물: ui/search/SearchScreen.kt, ui/upload/UploadScreen.kt, ui/navigation/BottomNavBar.kt
   - 포함: UploadScreen ConversationType 라디오 (고객미팅/사내회의)
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-47**: Feature - Favorites + Sort + SearchHistory + Dark Mode
+- [x] **M-47**: Feature - Favorites + Sort + SearchHistory + Dark Mode ← DONE 2026-03-30T00:20
   - 산출물: domain/usecase/ToggleFavoriteUseCase.kt, domain/usecase/SortCardsUseCase.kt, data/repository/FavoritesRepository.kt, data/repository/SearchHistoryRepository.kt, data/repository/ThemeRepository.kt
   - 검증: 컴파일 성공, git commit + push
 
