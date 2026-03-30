@@ -317,11 +317,11 @@
   - 산출물: di/DataModule.kt, di/ViewModelModule.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-50**: NavGraph wiring + MainActivity + 전체 화면 연결
+- [x] **M-50**: NavGraph wiring + MainActivity + 전체 화면 연결 ← DONE 2026-03-30T00:40
   - 산출물: ui/navigation/NavGraph.kt, MainActivity.kt
   - 검증: `./gradlew.bat assembleDebug --no-daemon 2>&1 | tail -5` BUILD SUCCESSFUL, git commit + push
 
-- [ ] **M-51**: FINAL BUILD VERIFICATION
+- [x] **M-51**: FINAL BUILD VERIFICATION ← DONE 2026-03-30T00:40
   - 검증:
     1. `./gradlew.bat test --no-daemon 2>&1 | tail -5` → BUILD SUCCESSFUL
     2. `./gradlew.bat assembleDebug --no-daemon 2>&1 | tail -5` → BUILD SUCCESSFUL

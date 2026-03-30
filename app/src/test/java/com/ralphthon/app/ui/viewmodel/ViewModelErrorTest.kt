@@ -565,6 +565,7 @@ class ViewModelErrorTest {
     @Test
     fun should_showErrorOnFilteredSearch_when_filteredSearchFails() = runTest {
         coEvery { searchCardsUseCase(any()) } returns Result.failure(DomainException.ServerException(500, "err"))
+        coEvery { searchCardsUseCase.searchFiltered(any(), any()) } returns Result.failure(DomainException.ServerException(500, "err"))
         val vm = SearchViewModel(searchCardsUseCase)
         vm.searchFiltered("테스트", "CUSTOMER_MEETING")
         advanceUntilIdle()

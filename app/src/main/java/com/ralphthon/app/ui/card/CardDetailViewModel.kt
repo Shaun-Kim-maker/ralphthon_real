@@ -41,8 +41,8 @@ class CardDetailViewModel @Inject constructor(
     init { loadCardDetail() }
 
     fun loadCardDetail() {
+        _uiState.value = CardDetailUiState.Loading
         viewModelScope.launch {
-            _uiState.value = CardDetailUiState.Loading
             getCardDetailUseCase(cardId).fold(
                 onSuccess = { result ->
                     _uiState.value = CardDetailUiState.Data(

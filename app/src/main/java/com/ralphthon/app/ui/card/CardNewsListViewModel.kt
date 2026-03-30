@@ -53,9 +53,9 @@ class CardNewsListViewModel @Inject constructor(
     }
 
     fun loadCards() {
+        _uiState.value = CardNewsListUiState.Loading
+        currentPage = 0
         viewModelScope.launch {
-            _uiState.value = CardNewsListUiState.Loading
-            currentPage = 0
             getCardsByCustomerUseCase.getFiltered(customerId, conversationType = currentFilter).fold(
                 onSuccess = { cards ->
                     _uiState.value = if (cards.isEmpty()) {
