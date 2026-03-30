@@ -309,11 +309,11 @@
   - 산출물: domain/usecase/ToggleFavoriteUseCase.kt, domain/usecase/SortCardsUseCase.kt, data/repository/FavoritesRepository.kt, data/repository/SearchHistoryRepository.kt, data/repository/ThemeRepository.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-48**: Repository 구현체 5개 (Mock 데이터 반환)
+- [x] **M-48**: Repository 구현체 5개 (Mock repos serve as impls) ← DONE 2026-03-30T00:25
   - 산출물: data/repository/CustomerRepositoryImpl.kt, CardRepositoryImpl.kt, KnowledgeRepositoryImpl.kt, UploadRepositoryImpl.kt, BriefRepositoryImpl.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-49**: DI DataModule + ViewModelModule (Hilt bindings)
+- [x] **M-49**: DI DataModule + ViewModelModule (Hilt bindings) ← DONE 2026-03-30T00:25
   - 산출물: di/DataModule.kt, di/ViewModelModule.kt
   - 검증: 컴파일 성공, git commit + push
 

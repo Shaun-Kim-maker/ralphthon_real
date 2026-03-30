@@ -1,10 +1,16 @@
 package com.ralphthon.app.di
 
+import com.ralphthon.app.data.repository.FavoritesRepository
+import com.ralphthon.app.data.repository.FavoritesRepositoryImpl
 import com.ralphthon.app.data.repository.MockBriefRepository
 import com.ralphthon.app.data.repository.MockCardRepository
 import com.ralphthon.app.data.repository.MockCustomerRepository
 import com.ralphthon.app.data.repository.MockKnowledgeRepository
 import com.ralphthon.app.data.repository.MockUploadRepository
+import com.ralphthon.app.data.repository.SearchHistoryRepository
+import com.ralphthon.app.data.repository.SearchHistoryRepositoryImpl
+import com.ralphthon.app.data.repository.ThemeRepository
+import com.ralphthon.app.data.repository.ThemeRepositoryImpl
 import com.ralphthon.app.domain.repository.BriefRepository
 import com.ralphthon.app.domain.repository.CardRepository
 import com.ralphthon.app.domain.repository.CustomerRepository
@@ -49,4 +55,22 @@ abstract class RepositoryModule {
     abstract fun bindUploadRepository(
         impl: MockUploadRepository
     ): UploadRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFavoritesRepository(
+        impl: FavoritesRepositoryImpl
+    ): FavoritesRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSearchHistoryRepository(
+        impl: SearchHistoryRepositoryImpl
+    ): SearchHistoryRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindThemeRepository(
+        impl: ThemeRepositoryImpl
+    ): ThemeRepository
 }
