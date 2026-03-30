@@ -46,6 +46,9 @@ import com.ralphthon.app.domain.model.ActionItem
 import com.ralphthon.app.domain.model.ActionItemStatus
 import com.ralphthon.app.domain.model.PredictedQuestion
 import com.ralphthon.app.domain.model.PriceCommitment
+import com.ralphthon.app.ui.components.ActionItemChecklist
+import com.ralphthon.app.ui.components.PredictedQuestionCard
+import com.ralphthon.app.ui.components.PriceHistoryList
 import com.ralphthon.app.ui.components.SentimentDot
 import com.ralphthon.app.ui.components.sentimentColor
 import com.ralphthon.app.ui.theme.SentimentNegative
@@ -200,7 +203,7 @@ private fun BriefContent(
             onToggle = onTogglePredictions
         ) {
             brief.predictedQuestions.forEach { pq ->
-                PredictedQuestionItem(pq)
+                PredictedQuestionCard(pq = pq)
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
@@ -214,10 +217,7 @@ private fun BriefContent(
             isExpanded = state.isPriceHistoryExpanded,
             onToggle = onTogglePriceHistory
         ) {
-            brief.priceHistory.forEach { pc ->
-                PriceCommitmentItem(pc)
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+            PriceHistoryList(priceCommitments = brief.priceHistory)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -229,10 +229,7 @@ private fun BriefContent(
             isExpanded = state.isActionItemsExpanded,
             onToggle = onToggleActionItems
         ) {
-            brief.recentActionItems.forEach { ai ->
-                ActionItemRow(ai)
-                Spacer(modifier = Modifier.height(4.dp))
-            }
+            ActionItemChecklist(actionItems = brief.recentActionItems)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -299,120 +296,3 @@ private fun ExpandableSection(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun PredictedQuestionItem(pq: PredictedQuestion) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
-            .padding(12.dp)
-    ) {
-        Text(
-            text = "Q: ${pq.question}",
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.SemiBold
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "A: ${pq.suggestedAnswer}",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "신뢰도",
-                style = MaterialTheme.typography.labelSmall
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            LinearProgressIndicator(
-                progress = { pq.confidence },
-                modifier = Modifier
-                    .weight(1f)
-                    .height(6.dp)
-                    .clip(RoundedCornerShape(3.dp))
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "${(pq.confidence * 100).toInt()}%",
-                style = MaterialTheme.typography.labelSmall
-            )
-        }
-        if (pq.relatedKnowledge.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(6.dp))
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                pq.relatedKnowledge.forEach { knowledge ->
-                    FilterChip(
-                        selected = false,
-                        onClick = {},
-                        label = { Text(knowledge, style = MaterialTheme.typography.labelSmall) }
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun PriceCommitmentItem(pc: PriceCommitment) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
-            .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = "${String.format("%,.0f", pc.amount)} ${pc.currency}",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = pc.condition,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-        Text(
-            text = pc.mentionedAt,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
-@Composable
-private fun ActionItemRow(item: ActionItem) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
-            modifier = Modifier
-                .size(8.dp)
-                .clip(RoundedCornerShape(4.dp))
-                .background(
-                    if (item.status == ActionItemStatus.OPEN) SentimentNegative
-                    else SentimentPositive
-                )
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = item.description,
-                style = MaterialTheme.typography.bodySmall
-            )
-            Text(
-                text = "${item.assignee} ${item.dueDate?.let { "| $it" } ?: ""}",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-    }
-}

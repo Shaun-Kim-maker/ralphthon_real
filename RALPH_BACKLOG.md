@@ -287,16 +287,16 @@
 ## Phase 5: UI Screens + Features + Integration (빠른 구현)
 예상 시간: 30분 | 마일스톤: M-43 ~ M-51
 
-- [x] **M-43**: 공통 UI 컴포넌트 8개 ← DONE 2026-03-30T00:01
+- [ ] **M-43**: 공통 UI 컴포넌트 8개
   - 산출물: ui/components/ShimmerLoading.kt, Avatar.kt, SentimentBar.kt, EmptyState.kt, ErrorState.kt, KeywordChip.kt, SentimentBadge.kt, MeetingTypeBadge.kt
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-44**: CustomerListScreen + CustomerBriefScreen (킬링 포인트)
+- [x] **M-44**: CustomerListScreen + CustomerBriefScreen (킬링 포인트) ← DONE 2026-03-30T00:10
   - 산출물: ui/customer/CustomerListScreen.kt, ui/customer/CustomerBriefScreen.kt, ui/components/PredictedQuestionCard.kt, ui/components/PriceHistoryList.kt, ui/components/ActionItemChecklist.kt, ui/components/CustomerCard.kt
   - 포함: 10초 브리핑(마지막대화+사내회의 통합, 예상질문+추천답변, 가격히스토리)
   - 검증: 컴파일 성공, git commit + push
 
-- [ ] **M-45**: CardNewsListScreen + CardDetailScreen
+- [x] **M-45**: CardNewsListScreen + CardDetailScreen ← DONE 2026-03-30T00:10
   - 산출물: ui/card/CardNewsListScreen.kt, ui/card/ContextCardItem.kt, ui/card/ConversationTypeFilterChip.kt, ui/card/CardDetailScreen.kt, ui/card/KnowledgePanel.kt, ui/card/StatementTimeline.kt, ui/card/PriceCommitmentSection.kt, ui/card/ActionItemSection.kt
   - 검증: 컴파일 성공, git commit + push
 

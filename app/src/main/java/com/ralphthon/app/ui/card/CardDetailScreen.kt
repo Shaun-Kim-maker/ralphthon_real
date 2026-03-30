@@ -56,6 +56,7 @@ import com.ralphthon.app.domain.model.PredictedQuestion
 import com.ralphthon.app.domain.model.PriceCommitment
 import com.ralphthon.app.ui.components.ErrorStateView
 import com.ralphthon.app.ui.components.KeywordChip
+import com.ralphthon.app.ui.components.PredictedQuestionCard
 import com.ralphthon.app.ui.components.SentimentDot
 import com.ralphthon.app.ui.components.ShimmerLoadingList
 import com.ralphthon.app.ui.components.sentimentColorByScore
@@ -187,9 +188,7 @@ private fun CardDetailContent(
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
-            card.keyStatements.forEach { stmt ->
-                StatementTimelineItem(stmt)
-            }
+            StatementTimeline(statements = card.keyStatements)
             Spacer(modifier = Modifier.height(8.dp))
         }
 
@@ -200,10 +199,7 @@ private fun CardDetailContent(
             isExpanded = state.isPriceExpanded,
             onToggle = onTogglePrice
         ) {
-            card.priceCommitments.forEach { pc ->
-                PriceDetailItem(pc)
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+            PriceCommitmentSection(priceCommitments = card.priceCommitments)
         }
 
         // Action Items Panel
@@ -213,10 +209,7 @@ private fun CardDetailContent(
             isExpanded = state.isActionExpanded,
             onToggle = onToggleAction
         ) {
-            card.actionItems.forEach { ai ->
-                ActionDetailItem(ai)
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+            ActionItemSection(actionItems = card.actionItems)
         }
 
         // Predicted Questions Panel
@@ -227,7 +220,7 @@ private fun CardDetailContent(
             onToggle = onTogglePrediction
         ) {
             card.predictedQuestions.forEach { pq ->
-                PredictionDetailItem(pq)
+                PredictedQuestionCard(pq = pq, detailed = true)
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
@@ -239,10 +232,7 @@ private fun CardDetailContent(
             isExpanded = state.isKnowledgeExpanded,
             onToggle = onToggleKnowledge
         ) {
-            state.additionalKnowledge.forEach { ka ->
-                KnowledgeDetailItem(ka)
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+            KnowledgePanel(articles = state.additionalKnowledge)
         }
 
         // Keywords at bottom
@@ -308,263 +298,3 @@ private fun ExpandableDetailPanel(
     }
 }
 
-@Composable
-private fun StatementTimelineItem(stmt: KeyStatement) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 4.dp)
-    ) {
-        // Timeline dot + line
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.width(32.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(24.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = stmt.speaker.take(1),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            }
-        }
-        Spacer(modifier = Modifier.width(8.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = stmt.speaker,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f))
-                        .clickable { /* Mock: 녹음파일 해당 위치로 이동 */ }
-                        .padding(horizontal = 6.dp, vertical = 2.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "녹음 위치로 이동",
-                        modifier = Modifier.size(12.dp),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    Spacer(modifier = Modifier.width(2.dp))
-                    Text(
-                        text = stmt.timestamp,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-                Spacer(modifier = Modifier.width(4.dp))
-                SentimentDot(sentiment = stmt.sentiment, size = 8.dp)
-                if (stmt.isImportant) {
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "중요",
-                        modifier = Modifier.size(14.dp),
-                        tint = Color(0xFFFFC107)
-                    )
-                }
-            }
-            Text(
-                text = stmt.text,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(top = 2.dp)
-            )
-        }
-    }
-}
-
-@Composable
-private fun PriceDetailItem(pc: PriceCommitment) {
-    ElevatedCard(
-        shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = "${String.format("%,.0f", pc.amount)} ${pc.currency}",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = pc.condition,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            Text(
-                text = pc.mentionedAt,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-    }
-}
-
-@Composable
-private fun ActionDetailItem(item: ActionItem) {
-    ElevatedCard(
-        shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(top = 4.dp)
-                ) {
-                    Text(
-                        text = item.assignee,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    item.dueDate?.let { date ->
-                        Text(
-                            text = date,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                }
-            }
-            FilterChip(
-                selected = item.status == ActionItemStatus.DONE,
-                onClick = {},
-                label = {
-                    Text(
-                        text = if (item.status == ActionItemStatus.OPEN) "진행중" else "완료",
-                        style = MaterialTheme.typography.labelSmall
-                    )
-                },
-                colors = FilterChipDefaults.filterChipColors(
-                    containerColor = if (item.status == ActionItemStatus.OPEN)
-                        SentimentNegative.copy(alpha = 0.1f) else SentimentPositive.copy(alpha = 0.1f),
-                    labelColor = if (item.status == ActionItemStatus.OPEN)
-                        SentimentNegative else SentimentPositive,
-                    selectedContainerColor = SentimentPositive.copy(alpha = 0.1f),
-                    selectedLabelColor = SentimentPositive
-                )
-            )
-        }
-    }
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun PredictionDetailItem(pq: PredictedQuestion) {
-    ElevatedCard(
-        shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = "Q: ${pq.question}",
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = "A: ${pq.suggestedAnswer}",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(modifier = Modifier.height(6.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("신뢰도", style = MaterialTheme.typography.labelSmall)
-                Spacer(modifier = Modifier.width(8.dp))
-                LinearProgressIndicator(
-                    progress = { pq.confidence },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(6.dp)
-                        .clip(RoundedCornerShape(3.dp))
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text("${(pq.confidence * 100).toInt()}%", style = MaterialTheme.typography.labelSmall)
-            }
-            if (pq.relatedKnowledge.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(6.dp))
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    pq.relatedKnowledge.forEach { k ->
-                        FilterChip(
-                            selected = false,
-                            onClick = {},
-                            label = { Text(k, style = MaterialTheme.typography.labelSmall) }
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun KnowledgeDetailItem(article: KnowledgeArticle) {
-    ElevatedCard(
-        shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = article.title,
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.weight(1f)
-                )
-                FilterChip(
-                    selected = false,
-                    onClick = {},
-                    label = { Text(article.category, style = MaterialTheme.typography.labelSmall) }
-                )
-            }
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = article.content,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 3
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("관련도", style = MaterialTheme.typography.labelSmall)
-                Spacer(modifier = Modifier.width(8.dp))
-                LinearProgressIndicator(
-                    progress = { article.relevanceScore },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(4.dp)
-                        .clip(RoundedCornerShape(2.dp))
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    "${(article.relevanceScore * 100).toInt()}%",
-                    style = MaterialTheme.typography.labelSmall
-                )
-            }
-        }
-    }
-}
